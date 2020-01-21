@@ -114,7 +114,7 @@ class CameraScreen extends React.Component {
       let { imageUri, imageHeight, imageWidth } = this.state;
       let controlColour = 'white';
 
-      // Determine the colour of the controls. Make then dark if the image is landscape.
+      // Determine the colour of the controls. Make them dark if the image is landscape.
       if (imageWidth > imageHeight) {
         controlColour = 'black';
       }
