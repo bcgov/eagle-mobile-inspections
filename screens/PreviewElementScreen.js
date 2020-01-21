@@ -90,10 +90,17 @@ class PreviewElementScreen extends React.Component {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Image
-              style={{ width: win.width, height: 540 }}
-              source={{ uri: imageUri }}
-            />
+            <ScrollView
+              maximumZoomScale={2.5}
+              minimumZoomScale={1}
+              pinchGestureEnabled={true}
+            >
+              <Image
+                style={{ width: win.width, height: 540 }}
+                source={{ uri: imageUri }}
+                resizeMode='contain'
+              />
+            </ScrollView>
           </View>
           <View style={{ margin: 25 }}>
             <Text>Lat: {lat}</Text>
