@@ -45,6 +45,49 @@
 		302F51A69DE44E578E14A9CC /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24053F339E64EF0BC02DE4A /* libRNVectorIcons-tvOS.a */; };
 		3ACAAA65F2DA4493990ABC86 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E56CF7FAC2DD4ABA99A73160 /* Octicons.ttf */; };
 		45A19696AC3F480991DA3BD5 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2523E5945542B99E49AC85 /* libRCTVideo.a */; };
+		471CE7AA23D8C43100FB3487 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		471CE7AB23D8C43100FB3487 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		471CE7AD23D8C43100FB3487 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 651823802350EA0400706BB2 /* libRNImagePicker.a */; };
+		471CE7AE23D8C43100FB3487 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		471CE7AF23D8C43100FB3487 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		471CE7B023D8C43100FB3487 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		471CE7B123D8C43100FB3487 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		471CE7B223D8C43100FB3487 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
+		471CE7B323D8C43100FB3487 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
+		471CE7B423D8C43100FB3487 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
+		471CE7B523D8C43100FB3487 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
+		471CE7B623D8C43100FB3487 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
+		471CE7B723D8C43100FB3487 /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
+		471CE7B823D8C43100FB3487 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		471CE7B923D8C43100FB3487 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
+		471CE7BA23D8C43100FB3487 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
+		471CE7BB23D8C43100FB3487 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3AC0E622CBC4BD2A32494B2 /* libRNVectorIcons.a */; };
+		471CE7BC23D8C43100FB3487 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8F1D216F564150BB78CBA8 /* libRNGestureHandler.a */; };
+		471CE7BD23D8C43100FB3487 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8067A99E254C37A8D47822 /* libSplashScreen.a */; };
+		471CE7BE23D8C43100FB3487 /* libRNAWSCognito.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A62A634062427F95BF6CFD /* libRNAWSCognito.a */; };
+		471CE7BF23D8C43100FB3487 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E382A56FB4CC58DA0A8DA /* libRNCAsyncStorage.a */; };
+		471CE7C023D8C43100FB3487 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8819A2E84D04997845B700A /* libRNCamera.a */; };
+		471CE7C123D8C43100FB3487 /* libRNAudioRecorderPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D725400335FF4249B2DCBF67 /* libRNAudioRecorderPlayer.a */; };
+		471CE7C223D8C43100FB3487 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2523E5945542B99E49AC85 /* libRCTVideo.a */; };
+		471CE7C323D8C43100FB3487 /* libRNCGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3719487CE44AC4A0B04552 /* libRNCGeolocation.a */; };
+		471CE7C423D8C43100FB3487 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3737D8BE1B1D42E7A07301B2 /* libReactNativeConfig.a */; };
+		471CE7C623D8C43100FB3487 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		471CE7C723D8C43100FB3487 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ED518A0BDFD43A7BF783ADF /* AntDesign.ttf */; };
+		471CE7C823D8C43100FB3487 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAC942254BD0474EBD3A2143 /* Entypo.ttf */; };
+		471CE7C923D8C43100FB3487 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FBBDFB9ABE44648BE5320DD /* EvilIcons.ttf */; };
+		471CE7CA23D8C43100FB3487 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A9A57F012CF43B5910124C0 /* Feather.ttf */; };
+		471CE7CB23D8C43100FB3487 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B067FF2D8CB44E98879CE36B /* FontAwesome.ttf */; };
+		471CE7CC23D8C43100FB3487 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFC3C28F8947BB82B164FA /* FontAwesome5_Brands.ttf */; };
+		471CE7CD23D8C43100FB3487 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 503A2CE5EC7149A1A2557DA0 /* FontAwesome5_Regular.ttf */; };
+		471CE7CE23D8C43100FB3487 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E6A3436FCDC4CD79C275EC5 /* FontAwesome5_Solid.ttf */; };
+		471CE7CF23D8C43100FB3487 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB79DC442F4C0C971BEFF5 /* Foundation.ttf */; };
+		471CE7D023D8C43100FB3487 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA099AA53AE241688E59E970 /* Ionicons.ttf */; };
+		471CE7D123D8C43100FB3487 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		471CE7D223D8C43100FB3487 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 605C4AD9C8724EAA87FEE9AF /* MaterialCommunityIcons.ttf */; };
+		471CE7D323D8C43100FB3487 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75879B13A21344FF8558175D /* MaterialIcons.ttf */; };
+		471CE7D423D8C43100FB3487 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E56CF7FAC2DD4ABA99A73160 /* Octicons.ttf */; };
+		471CE7D523D8C43100FB3487 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA8805F7996148CD9DC4EDB3 /* SimpleLineIcons.ttf */; };
+		471CE7D623D8C43100FB3487 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B49C1A087AF94BDD99455279 /* Zocial.ttf */; };
 		4D60716F233ECF1C003CB6AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		4D607170233ECF1C003CB6AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4D607172233ECF1C003CB6AA /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -530,6 +573,8 @@
 		3737D8BE1B1D42E7A07301B2 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		3A3AFA50DAB74531A6094722 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		3CD587A391404A7D947497FD /* libReactNativeConfig-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libReactNativeConfig-tvOS.a"; sourceTree = "<group>"; };
+		471CE7DB23D8C43100FB3487 /* eagleMobile TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eagleMobile TEST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		471CE7DC23D8C43100FB3487 /* eagleMobile TEST-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "eagleMobile TEST-Info.plist"; path = "/Users/kit/Documents/Projects/EPIC/eagle-mobile-inspections/ios/eagleMobile TEST-Info.plist"; sourceTree = "<absolute>"; };
 		4D60719F233ECF1C003CB6AA /* eagleMobileDEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eagleMobileDEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6071A0233ECF1C003CB6AA /* eagleMobile DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "eagleMobile DEV-Info.plist"; path = "/Volumes/data/mark/src/eagleMobile/ios/eagleMobile DEV-Info.plist"; sourceTree = "<absolute>"; };
 		503A2CE5EC7149A1A2557DA0 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -636,6 +681,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471CE7AC23D8C43100FB3487 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471CE7AD23D8C43100FB3487 /* libRNImagePicker.a in Frameworks */,
+				471CE7AE23D8C43100FB3487 /* JavaScriptCore.framework in Frameworks */,
+				471CE7AF23D8C43100FB3487 /* libRCTBlob.a in Frameworks */,
+				471CE7B023D8C43100FB3487 /* libRCTAnimation.a in Frameworks */,
+				471CE7B123D8C43100FB3487 /* libReact.a in Frameworks */,
+				471CE7B223D8C43100FB3487 /* libRCTActionSheet.a in Frameworks */,
+				471CE7B323D8C43100FB3487 /* libRCTGeolocation.a in Frameworks */,
+				471CE7B423D8C43100FB3487 /* libRCTImage.a in Frameworks */,
+				471CE7B523D8C43100FB3487 /* libRCTLinking.a in Frameworks */,
+				471CE7B623D8C43100FB3487 /* libRCTNetwork.a in Frameworks */,
+				471CE7B723D8C43100FB3487 /* libRCTSettings.a in Frameworks */,
+				471CE7B823D8C43100FB3487 /* libRCTText.a in Frameworks */,
+				471CE7B923D8C43100FB3487 /* libRCTVibration.a in Frameworks */,
+				471CE7BA23D8C43100FB3487 /* libRCTWebSocket.a in Frameworks */,
+				471CE7BB23D8C43100FB3487 /* libRNVectorIcons.a in Frameworks */,
+				471CE7BC23D8C43100FB3487 /* libRNGestureHandler.a in Frameworks */,
+				471CE7BD23D8C43100FB3487 /* libSplashScreen.a in Frameworks */,
+				471CE7BE23D8C43100FB3487 /* libRNAWSCognito.a in Frameworks */,
+				471CE7BF23D8C43100FB3487 /* libRNCAsyncStorage.a in Frameworks */,
+				471CE7C023D8C43100FB3487 /* libRNCamera.a in Frameworks */,
+				471CE7C123D8C43100FB3487 /* libRNAudioRecorderPlayer.a in Frameworks */,
+				471CE7C223D8C43100FB3487 /* libRCTVideo.a in Frameworks */,
+				471CE7C323D8C43100FB3487 /* libRNCGeolocation.a in Frameworks */,
+				471CE7C423D8C43100FB3487 /* libReactNativeConfig.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +837,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				4D6071A0233ECF1C003CB6AA /* eagleMobile DEV-Info.plist */,
+				471CE7DC23D8C43100FB3487 /* eagleMobile TEST-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -994,6 +1071,7 @@
 				2D02E47B1E0B4A5D006451C7 /* eagleMobile-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* eagleMobile-tvOSTests.xctest */,
 				4D60719F233ECF1C003CB6AA /* eagleMobileDEV.app */,
+				471CE7DB23D8C43100FB3487 /* eagleMobile TEST.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1105,6 +1183,24 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* eagleMobile-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		471CE7A823D8C43100FB3487 /* eagleMobile TEST */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 471CE7D823D8C43100FB3487 /* Build configuration list for PBXNativeTarget "eagleMobile TEST" */;
+			buildPhases = (
+				471CE7A923D8C43100FB3487 /* Sources */,
+				471CE7AC23D8C43100FB3487 /* Frameworks */,
+				471CE7C523D8C43100FB3487 /* Resources */,
+				471CE7D723D8C43100FB3487 /* Bundle React Native code and images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "eagleMobile TEST";
+			productName = "Hello World";
+			productReference = 471CE7DB23D8C43100FB3487 /* eagleMobile TEST.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4D60716D233ECF1C003CB6AA /* eagleMobile DEV */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D60719C233ECF1C003CB6AA /* Build configuration list for PBXNativeTarget "eagleMobile DEV" */;
@@ -1150,6 +1246,9 @@
 						DevelopmentTeam = 7Y3834AL35;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					471CE7A823D8C43100FB3487 = {
+						DevelopmentTeam = KH9MTRSDAZ;
 					};
 					4D60716D233ECF1C003CB6AA = {
 						DevelopmentTeam = KH9MTRSDAZ;
@@ -1269,6 +1368,7 @@
 				2D02E47A1E0B4A5D006451C7 /* eagleMobile-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* eagleMobile-tvOSTests */,
 				4D60716D233ECF1C003CB6AA /* eagleMobile DEV */,
+				471CE7A823D8C43100FB3487 /* eagleMobile TEST */,
 			);
 		};
 /* End PBXProject section */
@@ -1688,6 +1788,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		471CE7C523D8C43100FB3487 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471CE7C623D8C43100FB3487 /* LaunchScreen.xib in Resources */,
+				471CE7C723D8C43100FB3487 /* AntDesign.ttf in Resources */,
+				471CE7C823D8C43100FB3487 /* Entypo.ttf in Resources */,
+				471CE7C923D8C43100FB3487 /* EvilIcons.ttf in Resources */,
+				471CE7CA23D8C43100FB3487 /* Feather.ttf in Resources */,
+				471CE7CB23D8C43100FB3487 /* FontAwesome.ttf in Resources */,
+				471CE7CC23D8C43100FB3487 /* FontAwesome5_Brands.ttf in Resources */,
+				471CE7CD23D8C43100FB3487 /* FontAwesome5_Regular.ttf in Resources */,
+				471CE7CE23D8C43100FB3487 /* FontAwesome5_Solid.ttf in Resources */,
+				471CE7CF23D8C43100FB3487 /* Foundation.ttf in Resources */,
+				471CE7D023D8C43100FB3487 /* Ionicons.ttf in Resources */,
+				471CE7D123D8C43100FB3487 /* Images.xcassets in Resources */,
+				471CE7D223D8C43100FB3487 /* MaterialCommunityIcons.ttf in Resources */,
+				471CE7D323D8C43100FB3487 /* MaterialIcons.ttf in Resources */,
+				471CE7D423D8C43100FB3487 /* Octicons.ttf in Resources */,
+				471CE7D523D8C43100FB3487 /* SimpleLineIcons.ttf in Resources */,
+				471CE7D623D8C43100FB3487 /* Zocial.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D607189233ECF1C003CB6AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1743,6 +1867,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		471CE7D723D8C43100FB3487 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
 		4D60719B233ECF1C003CB6AA /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1791,6 +1929,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCD954D1E0B4F2C00145EB5 /* eagleMobileTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471CE7A923D8C43100FB3487 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471CE7AA23D8C43100FB3487 /* AppDelegate.m in Sources */,
+				471CE7AB23D8C43100FB3487 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2157,6 +2304,77 @@
 			};
 			name = Release;
 		};
+		471CE7D923D8C43100FB3487 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-DEV";
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = KH9MTRSDAZ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-recorder-player/ios",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/geolocation/ios",
+					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/eagleMobile TEST-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0.4;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.bc.gov.pathfinder.mobile.FieldInspection;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		471CE7DA23D8C43100FB3487 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-DEV";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KH9MTRSDAZ;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-recorder-player/ios",
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+					"$(SRCROOT)/../node_modules/@react-native-community/geolocation/ios",
+					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/eagleMobile TEST-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0.4;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ca.bc.gov.pathfinder.mobile.FieldInspection;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 		4D60719D233ECF1C003CB6AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2362,6 +2580,15 @@
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
 				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		471CE7D823D8C43100FB3487 /* Build configuration list for PBXNativeTarget "eagleMobile TEST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471CE7D923D8C43100FB3487 /* Debug */,
+				471CE7DA23D8C43100FB3487 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
