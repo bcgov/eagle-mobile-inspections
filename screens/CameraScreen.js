@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {
   ImageBackground,
   StyleSheet,
-  View
+  View,
+  Image
 } from 'react-native';
 
 import { Button, Icon } from 'react-native-elements'
@@ -27,7 +28,8 @@ class CameraScreen extends React.Component {
     this.state = {
       params: props.navigation.state.params,
       imageUri: null,
-      photos: []
+      imageHeight: null,
+      imageWidth: null,
     }
   }
 
@@ -88,7 +90,14 @@ class CameraScreen extends React.Component {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options);
       this.setState({ imageUri: data.uri });
-      console.log(data.uri);
+
+      // Get the height and width.
+      Image.getSize(data.uri, (width, height) => {
+        this.setState({
+          imageWidth: width,
+          imageHeight: height,
+        });
+      });
     }
   };
 
@@ -102,7 +111,14 @@ class CameraScreen extends React.Component {
       return null;
     } else {
       // Image from camera
-      let { imageUri } = this.state;
+      let { imageUri, imageHeight, imageWidth } = this.state;
+      let controlColour = 'white';
+
+      // Determine the colour of the controls. Make them dark if the image is landscape.
+      if (imageWidth > imageHeight) {
+        controlColour = 'black';
+      }
+
       if (imageUri) {
         // Preview of image if image is new.s
         return (
@@ -110,6 +126,7 @@ class CameraScreen extends React.Component {
             <ImageBackground
               source={{ uri: imageUri }}
               style={{ width: '100%', height: '100%' }}
+              resizeMode='contain'
             >
               <View style={{
                 flex: 1,
@@ -125,7 +142,7 @@ class CameraScreen extends React.Component {
                       <Icon
                         name="backspace"
                         type='material'
-                        color='white'
+                        color={controlColour}
                         size={50}
                       />
                     }
@@ -137,7 +154,7 @@ class CameraScreen extends React.Component {
                       <Icon
                         name="save"
                         type='material'
-                        color='white'
+                        color={controlColour}
                         size={50}
                       />
                     }
