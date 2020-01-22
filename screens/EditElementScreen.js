@@ -228,10 +228,9 @@ class EditElementScreen extends React.Component {
 
   async openTheodolite() {
     const url = 'theodolite://';
-    let supported = await Linking.canOpenURL(url);
-    if (!supported) {
+    return Linking.openURL(url).then(() => {}).catch((e) => {
+      // console.log("Couldn't open theodolite", e);
       setTimeout(() => {
-        // Can't open
         Alert.alert(
           //title
           'Error',
@@ -243,9 +242,7 @@ class EditElementScreen extends React.Component {
           { cancelable: false }
         );
       }, 1000);
-    } else {
-      return Linking.openURL(url);
-    }
+    });
   }
 
   async getMediaFromLibrary() {
