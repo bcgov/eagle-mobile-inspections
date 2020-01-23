@@ -46,7 +46,6 @@ class SetUpInspectionScreen extends React.Component {
     super(props);
 
     this.handleStoreStateChange = this.handleStoreStateChange.bind(this);
-
     this.state = {
       name: props.currentInspection.name,
       project: props.currentInspection.project,
@@ -57,6 +56,7 @@ class SetUpInspectionScreen extends React.Component {
       label: props.currentInspection.label,
       inspectionUpdatedFlag: false,
       unsub: store.subscribe(this.handleStoreStateChange),
+      focusListener: null,
       params: props.navigation.state.params
     }
   }
@@ -114,11 +114,14 @@ class SetUpInspectionScreen extends React.Component {
     this.props.navigation.setParams({ disableSave: true });
     this.props.navigation.setParams({ self: this });
 
-    this.validateForm();
+    this.state.focusListener = this.props.navigation.addListener("didFocus",() => {
+      this.validateForm();
+    });
   }
 
   componentWillUnmount() {
     // // Remove the listener when you are done
+    this.state.focusListener.remove()
     this.state.unsub();
   }
 
