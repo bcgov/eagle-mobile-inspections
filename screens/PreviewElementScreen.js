@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 import {
   ScrollView,
@@ -67,11 +67,17 @@ class PreviewElementScreen extends React.Component {
     let readonly = this.props.navigation.getParam('readonly', false);
     let uri = this.props.navigation.getParam('imageUri', null);
 
-    let lat = 0;
-    let lon = 0;
-    if (geo) {
+    // Saved images store their geo data as an array. Images coming from the camera
+    // store their geo data as an object.
+    let lat;
+    let lon;
+    if (Array.isArray(geo)) {
       lat = geo[0];
       lon = geo[1];
+    } 
+    else if (typeof geo === 'object' && geo !== null ) {
+      lat = geo.latitude;
+      lon = geo.longitude;
     }
 
     const win = Dimensions.get('window');
@@ -103,8 +109,13 @@ class PreviewElementScreen extends React.Component {
             </ScrollView>
           </View>
           <View style={{ margin: 25 }}>
-            <Text>Lat: {lat}</Text>
-            <Text>Lon: {lon}</Text>
+            {!lat || !lon
+              ? <Text>No GPS data available</Text>
+              : <Fragment>
+                  <Text>Lat: {lat}</Text>
+                  <Text>Lon: {lon}</Text>
+                </Fragment>
+            }
             <Text>Caption: {caption}</Text>
           </View>
         </View>
