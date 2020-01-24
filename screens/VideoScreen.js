@@ -146,10 +146,11 @@ class VideoScreen extends React.Component {
     }
 
     if (data !== null) {
-      curr.push({ type: 'video', uri: this.state.imageUri, geo: data.coords, caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'video', uri: this.state.uri, geo: data.coords, caption: '', timestamp: new Date().toISOString() });
     } else {
-      curr.push({ type: 'video', uri: this.state.imageUri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'video', uri: this.state.uri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() });
     }
+
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr });
     this.props.navigation.navigate('AddCaptionScreen', { back: this.state.params.back });
   }
