@@ -30,6 +30,7 @@ class CameraScreen extends React.Component {
       imageUri: null,
       imageHeight: null,
       imageWidth: null,
+      useFlash: false,
     }
   }
 
@@ -105,6 +106,10 @@ class CameraScreen extends React.Component {
     this.setState({ imageUri: null });
   }
 
+  switchFlash() {
+    this.setState(previousState => ({ useFlash: !previousState.useFlash }));
+  }
+
   render() {
     const isFocused = this.props.isFocused;
     if (!isFocused) {
@@ -174,7 +179,7 @@ class CameraScreen extends React.Component {
               }}
               style={styles.preview}
               type={RNCamera.Constants.Type.back}
-              flashMode={RNCamera.Constants.FlashMode.on}
+              flashMode={this.state.useFlash ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
               androidCameraPermissionOptions={{
                 title: 'Permission to use camera',
                 message: 'We need your permission to use your camera',
@@ -201,6 +206,18 @@ class CameraScreen extends React.Component {
                       type='material'
                       color='white'
                       size={50}
+                    />
+                  }
+                />
+                <Button
+                  type="clear"
+                  onPress={this.switchFlash.bind(this)}
+                  icon={
+                    <Icon
+                      name={this.state.useFlash ? 'flash-on' : 'flash-off'}
+                      type='material'
+                      color='white'
+                      size={40}
                     />
                   }
                 />
