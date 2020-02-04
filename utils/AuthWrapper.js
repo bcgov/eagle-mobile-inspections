@@ -182,6 +182,7 @@ class AuthWrapper extends React.Component {
       // console.log("JSON:", json);
 
       if (json === null) {
+        console.log("Err: json null");
         // Error
         Alert.alert(
           //title
@@ -208,6 +209,7 @@ class AuthWrapper extends React.Component {
           { cancelable: false }
         );
       } else {
+        console.log("Online");
         this.props.dispatch({ type: UPDATE_OFFLINE_SWITCH, isOffline: false });
         this.setState({
           authenticated: true,

@@ -57,6 +57,7 @@ export async function uploadInspection(currentUser, inspection) {
     let response = null;
     let data = null;
     let inspectionObject = {
+      inspectionId: inspection.inspectionId,
       project: inspection.project ? inspection.project._id : null,
       customProjectName: inspection.customProjectName,
       startDate: inspection.startDate,
@@ -68,6 +69,7 @@ export async function uploadInspection(currentUser, inspection) {
     };
     try {
       data = JSON.stringify(inspectionObject);
+      console.log("Posting Inspection:", data);
     } catch (e) {
       console.log("Error parsing:", e);
       resolve(null);
@@ -92,18 +94,19 @@ export async function uploadInspection(currentUser, inspection) {
       if (response.status === 200) {
         // curInsp.status = 'Uploading';
 
-        let res = await uploadElements(currentUser, curInsp.project ? curInsp.project._id : null, resObj._id, inspection.elements);
+        await uploadElements(currentUser, curInsp.project ? curInsp.project._id : null, resObj._id, inspection.elements);
 
-        // TODO: Deal with partial uploads.
         inspection.status = 'Submitted';
         console.log("Done submitting:", inspection);
         resolve(inspection);
       } else {
         console.log("error submitting:", response);
+        // The caller will check null and throw up an alert
         resolve(null);
       }
     } catch (error) {
-      console.log('eeek:', error);
+      console.log('Error:', error);
+      // The caller will check null and throw up an alert
       resolve(null);
     }
   });
@@ -126,11 +129,14 @@ async function createElement(currentUser, projId, inspId, element) {
   let url = `${env.API_HOST}/api/inspection/${inspId}/element`;
 
   let formData = new FormData();
+  formData.append('elementId', element.elementId);
   formData.append('title', element.title);
   formData.append('requirement', element.requirement);
   formData.append('description', element.description);
   formData.append('timestamp', element.timestamp);
   formData.append('project', projId);
+
+  console.log("Creating element:", element.elementId);
 
   let response = await fetch(
     url,
@@ -146,8 +152,8 @@ async function createElement(currentUser, projId, inspId, element) {
   );
   // console.log('json:', response);
   if (response.status !== 200) {
-    console.log("ERR:", response.status);
-    return null;
+    console.log("Server error:", response.status);
+    throw 'Response is null';
   }
   let resObj = await response.json();
 
@@ -157,8 +163,8 @@ async function createElement(currentUser, projId, inspId, element) {
 
     if (res === null) {
       // Error
-      // TODO
       console.log("error uploading item.");
+      throw 'Response is null';
     } else {
       console.log("Res:", res);
       return res;
@@ -190,10 +196,13 @@ async function uploadItem(currentUser, projId, elementId, inspId, item) {
       break;
   }
 
+  formData.append("itemId", item.itemId);
   formData.append("type", item.type);
   formData.append("geo", JSON.stringify(item.geo));
   formData.append('caption', item.caption);
   formData.append('timestamp', item.timestamp);
+
+  console.log("uploadItem:", formData);
 
   let response = await fetch(
     url,
@@ -210,7 +219,7 @@ async function uploadItem(currentUser, projId, elementId, inspId, item) {
   // console.log('json:', response);
   if (response.status === 200) {
     return item;
+  } else {
+    throw 'Error in Response';
   }
-
-  return null;
 }
