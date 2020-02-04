@@ -19,6 +19,7 @@ import { HeaderBackButton } from 'react-navigation';
 import SimplePicker from 'react-native-simple-picker';
 import store from '../js/store';
 import * as Action from '../js/actionTypes';
+import * as uuid from 'react-native-uuid';
 
 // Add element screen
 
@@ -69,16 +70,22 @@ class ElementScreen extends React.Component {
     // Add each element
     let items = [];
     self.props.items.forEach(item => {
+      item.itemId = uuid.v4();
       items.push(item);
     });
 
+    console.log("Packed Items:", items);
+
     self.props.currentInspection.elements.push({
+      elementId: uuid.v4(),
       title: self.state.title,
       requirement: self.state.requirement,
       description: self.state.description,
       items: items,
       timestamp: new Date().toISOString()
     });
+
+    console.log("Packed Elements:", self.props.currentInspection.elements);
 
     // Add this new element to the main inspection.
     let inspections = [];

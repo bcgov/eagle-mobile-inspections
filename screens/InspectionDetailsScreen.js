@@ -176,7 +176,7 @@ class InspectionDetailsScreen extends React.Component {
             self.saveInspection(self.props.currentInspection);
             self.props.navigation.navigate('Inspections');
           } else {
-            throw 'Response is null';
+            Alert.alert('There was an issue with submitting your inspection.');
           }
         } catch (error) {
           console.log(error);
