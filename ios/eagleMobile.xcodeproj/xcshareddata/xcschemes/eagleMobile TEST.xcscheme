@@ -37,9 +37,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D60716D233ECF1C003CB6AA"
-               BuildableName = "eagleMobileDEV.app"
-               BlueprintName = "eagleMobile DEV"
+               BlueprintIdentifier = "471CE7A823D8C43100FB3487"
+               BuildableName = "eagleMobile TEST.app"
+               BlueprintName = "eagleMobile TEST"
                ReferencedContainer = "container:eagleMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -73,15 +73,6 @@
             ReferencedContainer = "container:eagleMobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4D60716D233ECF1C003CB6AA"
-            BuildableName = "eagleMobileDEV.app"
-            BlueprintName = "eagleMobile DEV"
-            ReferencedContainer = "container:eagleMobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -89,16 +80,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4D60716D233ECF1C003CB6AA"
-            BuildableName = "eagleMobileDEV.app"
-            BlueprintName = "eagleMobile DEV"
-            ReferencedContainer = "container:eagleMobile.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
