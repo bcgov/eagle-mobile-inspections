@@ -274,7 +274,6 @@ class EditElementScreen extends React.Component {
       // Unsupported type
       return;
     }
-
     // Safety for lat/long
     curr.push(
       {
@@ -362,7 +361,7 @@ class EditElementScreen extends React.Component {
           <View style={{
             margin: 10,
             flex: 1,
-            flexDirection: 'row',
+            flexDirection: 'column',
             flexWrap: 'wrap',
             alignItems: 'flex-start',
             alignContent: 'flex-start'
@@ -371,36 +370,49 @@ class EditElementScreen extends React.Component {
               this.props.currentInspection.elements.length > 0 && this.props.currentInspection.elements[this.state.params.index].items && this.props.currentInspection.elements[this.state.params.index].items.length > 0 && this.props.currentInspection.elements[this.state.params.index].items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={{ uri: p.uri }}
-                      />
-                    </TouchableHighlight>
+                    <View key={i}>
+                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                        <Image
+                          key={i}
+                          style={styles.image}
+                          source={{ uri: p.uri }}
+                        />
+                      </TouchableHighlight>
+                      <Text>Caption: {p.caption}</Text>
+                      <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                    </View>
                   )
                 } else if (p.type === 'video') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/video.png')}
-                      />
-                    </TouchableHighlight>
+                    <View key={i}>
+                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                        <Image
+                          key={i}
+                          style={styles.image}
+                          source={require('../assets/images/video.png')}
+                        />
+                      </TouchableHighlight>
+                      <Text>Caption: {p.caption}</Text>
+                      <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                     </View>
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/voice.png')}
-                      />
-                    </TouchableHighlight>
+                    <View key={i}>
+                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                        <Image
+                          key={i}
+                          style={styles.image}
+                          source={require('../assets/images/voice.png')}
+                        />
+                      </TouchableHighlight>
+                      <Text>Caption: {p.caption}</Text>
+                      <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                     </View>
                   )
                 } else if (p.type === 'text') {
                   return (
+                    <View key={i}>
                     <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
                       <Image
                         key={i}
@@ -408,6 +420,9 @@ class EditElementScreen extends React.Component {
                         source={require('../assets/images/text.png')}
                       />
                     </TouchableHighlight>
+                     <Text>Caption: {p.caption}</Text>
+                     <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                     </View>
                   )
                 }
               })}
@@ -416,7 +431,7 @@ class EditElementScreen extends React.Component {
             <View style={{
               margin: 10,
               flex: 1,
-              flexDirection: 'row',
+              flexDirection: 'column',
               flexWrap: 'wrap',
               alignItems: 'flex-start',
               alignContent: 'flex-start'
@@ -425,43 +440,59 @@ class EditElementScreen extends React.Component {
                 this.props.items.length > 0 && this.props.items.map((p, i) => {
                   if (p.type === 'photo') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={{ uri: p.uri }}
-                        />
-                      </TouchableHighlight>
+                      <View key={i}>
+                        <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                          <Image
+                            key={i}
+                            style={styles.image}
+                            source={{ uri: p.uri }}
+                          />
+                        </TouchableHighlight>
+                        <Text>Caption: {p.caption}</Text>
+                        <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                      </View>
                     )
                   } else if (p.type === 'video') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/video.png')}
-                        />
-                      </TouchableHighlight>
+                      <View key={i}>
+                        <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                          <Image
+                            key={i}
+                            style={styles.image}
+                            source={require('../assets/images/video.png')}
+                          />
+                        </TouchableHighlight>
+                        <Text>Caption: {p.caption}</Text>
+                        <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                       </View>
                     )
                   } else if (p.type === 'voice') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/voice.png')}
-                        />
-                      </TouchableHighlight>
+                      <View key={i}>
+                        <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                          <Image
+                            key={i}
+                            style={styles.image}
+                            source={require('../assets/images/voice.png')}
+                          />
+                        </TouchableHighlight>
+                        <Text>Caption: {p.caption}</Text>
+                        <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                      </View>
                     )
                   } else if (p.type === 'text') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/text.png')}
-                        />
-                      </TouchableHighlight>
+                      <View key={i}>
+                        <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
+                          <Image
+                            key={i}
+                            style={styles.image}
+                            source={require('../assets/images/text.png')}
+                          />
+                        </TouchableHighlight>
+                          <Text>Caption: {p.caption}</Text>
+                          <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
+                       </View>
                     )
                   }
                 })}
