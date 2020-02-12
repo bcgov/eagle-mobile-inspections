@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
-
+import { renderTouchables } from '../js/renderFunctions'
 import { Input, Image, Button } from 'react-native-elements'
 
 import { HeaderBackButton } from 'react-navigation';
@@ -289,22 +289,6 @@ class EditElementScreen extends React.Component {
     this.props.navigation.navigate('AddCaptionScreen', { ...this.state.params, back: 'EditElementScreen' });
   }
 
-  renderTouchables(key, imageSource, p) {
-    return (
-    <View key={key}>
-      <TouchableHighlight key={key} underlayColor='#fff' onPress={() => this.showElement(p)}>
-        <Image
-          key={key}
-          style={styles.image}
-          source={imageSource}
-        />
-      </TouchableHighlight>
-      <Text>Caption: {p.caption}</Text>
-      <Text>Timestamp: {new Date(p.timestamp).toDateString()}</Text>
-    </View>
-    )
-  }
-
   render() {
     if (this.props.currentInspection === undefined
       || !this.props.currentInspection.elements) {
@@ -386,19 +370,19 @@ class EditElementScreen extends React.Component {
               this.props.currentInspection.elements.length > 0 && this.props.currentInspection.elements[this.state.params.index].items && this.props.currentInspection.elements[this.state.params.index].items.length > 0 && this.props.currentInspection.elements[this.state.params.index].items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    this.renderTouchables(i, { uri: p.uri }, p)
+                    renderTouchables(i, { uri: p.uri }, p, styles)
                   )
                 } else if (p.type === 'video') {
                   return (
-                    this.renderTouchables(i, require('../assets/images/video.png'), p)
+                    renderTouchables(i, require('../assets/images/video.png'), p, styles)
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    this.renderTouchables(i, require('../assets/images/voice.png'), p)
+                    renderTouchables(i, require('../assets/images/voice.png'), p, styles)
                   )
                 } else if (p.type === 'text') {
                   return (
-                    this.renderTouchables(i, require('../assets/images/text.png'), p)
+                    renderTouchables(i, require('../assets/images/text.png'), p, styles)
                   )
                 }
               })}
@@ -416,19 +400,19 @@ class EditElementScreen extends React.Component {
                 this.props.items.length > 0 && this.props.items.map((p, i) => {
                   if (p.type === 'photo') {
                     return (
-                      this.renderTouchables(i, { uri: p.uri }, p)
+                      renderTouchables(i, { uri: p.uri }, p, styles)
                     )
                   } else if (p.type === 'video') {
                     return (
-                      this.renderTouchables(i, require('../assets/images/video.png'), p)
+                      renderTouchables(i, require('../assets/images/video.png'), p, styles)
                     )
                   } else if (p.type === 'voice') {
                     return (
-                      this.renderTouchables(i, require('../assets/images/voice.png'), p)
+                      renderTouchables(i, require('../assets/images/voice.png'), p, styles) 
                     )
                   } else if (p.type === 'text') {
                     return (
-                      this.renderTouchables(i, require('../assets/images/text.png'), p)
+                      renderTouchables(i, require('../assets/images/text.png'), p, styles)
                     )
                   }
                 })}
