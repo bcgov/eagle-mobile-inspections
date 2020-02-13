@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-export default StyleSheet.create({
+export const cameraScreenStyles = StyleSheet.create({
   container: {
     flex: 1
   },

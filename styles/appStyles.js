@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native'
-export default StyleSheet.create({
+export const appStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',

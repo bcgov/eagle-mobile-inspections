@@ -19,7 +19,7 @@ import SimplePicker from 'react-native-simple-picker'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import * as uuid from 'react-native-uuid'
-import { elementScreenStyles as styles } from '../styles/index.js'
+import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.js'
 import { elementOptions } from '../js/config'
 
 // Add element screen

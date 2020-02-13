@@ -1,2 +1,2 @@
 import { containerNoPadding } from './baseStyleSheets'
-export default containerNoPadding
+export const inspectionsScreenStyles = containerNoPadding

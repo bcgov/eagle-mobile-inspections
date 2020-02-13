@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Platform } from "react-native"
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 // Isn't used but will keep in this file

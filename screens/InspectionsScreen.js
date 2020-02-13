@@ -7,7 +7,7 @@ import * as uuid from 'react-native-uuid'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import Moment from 'moment'
-import { InspectionsScreenStyles as styles } from '../styles/index.js'
+import { inspectionsScreenStyles as styles } from '../styles/index.js'
 
 class LogoTitle extends React.Component {
   render() {
@@ -22,7 +22,6 @@ class LogoTitle extends React.Component {
 class InspectionsScreen extends React.Component {
   constructor(props) {
     super(props)
-
     this.addNewInspection = this.addNewInspection.bind(this)
     // this.submitAll = this.submitAll.bind(this);
     this.goToInspection = this.goToInspection.bind(this)

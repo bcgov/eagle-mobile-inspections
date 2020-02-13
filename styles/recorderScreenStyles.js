@@ -1,2 +1,2 @@
 import { recorderStyles } from './baseStyleSheets'
-export default recorderStyles
+export const recorderScreenStyles = recorderStyles

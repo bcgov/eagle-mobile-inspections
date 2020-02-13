@@ -1,5 +1,5 @@
 import { Platform, StyleSheet } from 'react-native'
-export default StyleSheet.create({
+export const mainTabNavigatorStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'

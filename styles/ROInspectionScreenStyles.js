@@ -1,2 +1,2 @@
 import { baseStyles } from './baseStyleSheets'
-export default baseStyles
+export const ROInspectionScreenStyles = baseStyles

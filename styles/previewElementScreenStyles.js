@@ -1,2 +1,2 @@
 import { flexColumnMarginTop } from './baseStyleSheets'
-export default flexColumnMarginTop
+export const previewElementScreenStyles = flexColumnMarginTop

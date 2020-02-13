@@ -1,1 +1,2 @@
-export { baseStyles } from './baseStyleSheets'
+import { baseStyles } from './baseStyleSheets'
+export const addCaptionScreenStyles = baseStyles;
