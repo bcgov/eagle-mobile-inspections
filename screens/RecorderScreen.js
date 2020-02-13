@@ -7,7 +7,7 @@ import {
 import { Button, Icon } from 'react-native-elements'
 import { withNavigationFocus, createStackNavigator } from 'react-navigation'
 import SelectProjectScreen from './SelectProjectScreen'
-import { recorderScreenStyles as styles } from '../styles/baseStyleSheets'
+import { recorderScreenStyles as styles } from '../styles/index.js'
 import AudioRecorderPlayer from 'react-native-audio-recorder-player'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'

@@ -15,7 +15,7 @@ import DatePicker from 'react-native-datepicker'
 import store from '../js/store'
 import { uploadInspection } from '../api/eagleAPI'
 import * as Action from '../js/actionTypes'
-import { setupInspectionScreenStyles as styles } from '../styles'
+import { setupInspectionScreenStyles as styles } from '../styles/index.js'
 
 class SetUpInspectionScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {

@@ -17,7 +17,7 @@ import { HeaderBackButton } from 'react-navigation'
 import SimplePicker from 'react-native-simple-picker'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
-import { editElementScreenStyles as styles } from '../styles'
+import { editElementScreenStyles as styles } from '../styles/index.js'
 import { elementOptions } from '../js/config'
 
 // Edit Element Screen

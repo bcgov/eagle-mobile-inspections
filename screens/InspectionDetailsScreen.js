@@ -19,7 +19,7 @@ import store from '../js/store'
 import { uploadInspection } from '../api/eagleAPI'
 import * as Action from '../js/actionTypes'
 import { AUTH_SIGNED_IN } from '../js/constants'
-import { inspectionDetailsScreenStyles as styles } from '../styles/baseStyleSheets'
+import { inspectionDetailsScreenStyles as styles } from '../styles/index.js'
 import { UPDATE_OFFLINE_SWITCH, UPDATE_CURRENT_USER } from '../js/actionTypes'
 
 // Add Inspections Screen

@@ -5,7 +5,7 @@ import {
   View,
   Image
 } from 'react-native'
-import { cameraScreenStyles as styles } from '../styles'
+import { cameraScreenStyles as styles } from '../styles/index.js'
 import { Button, Icon } from 'react-native-elements'
 import { withNavigationFocus } from 'react-navigation'
 import { RNCamera } from 'react-native-camera'

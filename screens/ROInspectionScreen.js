@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import Moment from 'moment'
 import { ListItem, Button } from 'react-native-elements'
-import { ROInspectionScreenStyles as styles } from '../styles/baseStyleSheets'
+import { ROInspectionScreenStyles as styles } from '../styles/index.js'
 import SelectProjectScreen from './SelectProjectScreen'
 import { createStackNavigator } from 'react-navigation'
 import store from '../js/store'
@@ -144,15 +144,15 @@ class ROInspectionScreen extends React.Component {
 
   showElement(item) {
     switch (item.type) {
-      case 'photo':
-        this.props.navigation.navigate('CameraScreen', { readonly: true, imageUri: item.uri, back: 'ROInspection' })
-        break
-      case 'video':
-        this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
-        break
-      case 'voice':
-        this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
-        break
+    case 'photo':
+      this.props.navigation.navigate('CameraScreen', { readonly: true, imageUri: item.uri, back: 'ROInspection' })
+      break
+    case 'video':
+      this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
+      break
+    case 'voice':
+      this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
+      break
     }
   }
 

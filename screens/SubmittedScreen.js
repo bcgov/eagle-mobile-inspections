@@ -1,13 +1,11 @@
 import React from 'react'
 import {
-  Platform,
-  StyleSheet,
   View,
   ScrollView
 } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import Moment from 'moment'
-
+import { submittedScreenStyles as styles } from '../styles/index.js'
 import { connect } from 'react-redux'
 
 // Submitted Screen (house)
@@ -33,24 +31,24 @@ class SubmittedScreen extends React.Component {
 
   _renderAvatar(type) {
     switch (type) {
-      case 'Energy-Electricity':
-        return 'plug'
-      case 'Mines':
-        return 'gears'
-      case 'Energy-Petroleum & Natural Gas':
-        return 'fire'
-      case 'Tourist Destination Resorts':
-        return 'image'
-      case 'Waste Disposal':
-        return 'trash'
-      case 'Water Management':
-        return 'tint'
-      case 'Industrial':
-        return 'industry'
-      case 'Transportation':
-        return 'car'
-      default:
-        return 'industry'
+    case 'Energy-Electricity':
+      return 'plug'
+    case 'Mines':
+      return 'gears'
+    case 'Energy-Petroleum & Natural Gas':
+      return 'fire'
+    case 'Tourist Destination Resorts':
+      return 'image'
+    case 'Waste Disposal':
+      return 'trash'
+    case 'Water Management':
+      return 'tint'
+    case 'Industrial':
+      return 'industry'
+    case 'Transportation':
+      return 'car'
+    default:
+      return 'industry'
     }
   }
 

@@ -1,1 +1,1 @@
-export { baseStyles } from './index'
+export { baseStyles } from './baseStyleSheets'

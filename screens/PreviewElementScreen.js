@@ -7,7 +7,7 @@ import {
   Dimensions
 } from 'react-native'
 import { Image } from 'react-native-elements'
-import { previewElementScreenStyles as styles } from '../styles/baseStyleSheets'
+import { previewElementScreenStyles as styles } from '../styles/index.js'
 
 class PreviewElementScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {

@@ -4,7 +4,7 @@ import { SectionList, Image, Text, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { REFRESH_AUTH, FORCE_LOGIN } from '../js/actionTypes'
 import env from 'react-native-config'
-import { settingsScreenStyles as styles } from '../styles/baseStyleSheets'
+import { settingsScreenStyles as styles } from '../styles/index.js'
 
 const ListHeader = (props) => {
   if ((props.currentUser && props.currentUser.decoded) || props.isOffline) {

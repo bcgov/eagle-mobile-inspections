@@ -1,4 +1,5 @@
-const styles = StyleSheet.create({
+import { StyleSheet } from 'react-native'
+export default StyleSheet.create({
   container: {
     flex: 1
   },
@@ -45,5 +46,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
-
-export default styles

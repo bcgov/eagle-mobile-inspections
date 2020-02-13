@@ -7,7 +7,7 @@ import * as uuid from 'react-native-uuid'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import Moment from 'moment'
-import { InspectionsScreenStyles as styles } from '../styles/baseStyleSheets'
+import { InspectionsScreenStyles as styles } from '../styles/index.js'
 
 class LogoTitle extends React.Component {
   render() {

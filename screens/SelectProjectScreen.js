@@ -11,7 +11,7 @@ import { SearchBar, ListItem, Icon, Button } from 'react-native-elements'
 import { getProjects } from '../api/eagleAPI'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
-import { selectProjectScreenStyles as styles } from '../styles/baseStyleSheets'
+import { selectProjectScreenStyles as styles } from '../styles/index.js'
 
 class LogoTitle extends React.Component {
   render() {
@@ -87,24 +87,24 @@ class SelectProjectScreen extends React.Component {
 
   _renderAvatar(type) {
     switch (type) {
-      case 'Energy-Electricity':
-        return 'plug'
-      case 'Mines':
-        return 'gears'
-      case 'Energy-Petroleum & Natural Gas':
-        return 'fire'
-      case 'Tourist Destination Resorts':
-        return 'image'
-      case 'Waste Disposal':
-        return 'trash'
-      case 'Water Management':
-        return 'tint'
-      case 'Industrial':
-        return 'industry'
-      case 'Transportation':
-        return 'car'
-      default:
-        return 'industry'
+    case 'Energy-Electricity':
+      return 'plug'
+    case 'Mines':
+      return 'gears'
+    case 'Energy-Petroleum & Natural Gas':
+      return 'fire'
+    case 'Tourist Destination Resorts':
+      return 'image'
+    case 'Waste Disposal':
+      return 'trash'
+    case 'Water Management':
+      return 'tint'
+    case 'Industrial':
+      return 'industry'
+    case 'Transportation':
+      return 'car'
+    default:
+      return 'industry'
     }
   }
 

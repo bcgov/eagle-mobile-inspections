@@ -1,3 +1,2 @@
-import { baseStyles } from './index'
-const styles = baseStyles
-export default styles
+import { baseStyles } from './baseStyleSheets'
+export default baseStyles
