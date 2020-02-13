@@ -7,14 +7,13 @@ import {
   Linking,
   Alert,
   Text,
-  TouchableHighlight,
   View,
 } from 'react-native';
 import Moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
 import { renderTouchables } from '../js/renderFunctions'
 
-import { Input, Image, Button } from 'react-native-elements'
+import { Input, Button } from 'react-native-elements'
 
 import { HeaderBackButton } from 'react-navigation';
 import SimplePicker from 'react-native-simple-picker';
@@ -356,19 +355,19 @@ class ElementScreen extends React.Component {
               this.props.items.length > 0 && this.props.items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    renderTouchables(i, { uri: p.uri }, p, styles)
+                    renderTouchables(i, { uri: p.uri }, p, styles, () => this.showElement(p))
                   )
                 } else if (p.type === 'video') {
                   return (
-                    renderTouchables(i, require('../assets/images/video.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/video.png'), p, styles, () => this.showElement(p))
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    renderTouchables(i, require('../assets/images/voice.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/voice.png'), p, styles, () => this.showElement(p))
                   )
                 } else if (p.type === 'text') {
                   return (
-                    renderTouchables(i, require('../assets/images/text.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/text.png'), p, styles, () => this.showElement(p))
                   )
                 }
               })}
