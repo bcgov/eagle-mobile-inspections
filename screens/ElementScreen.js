@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import Moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
+import { renderTouchables } from '../js/renderFunctions'
 
 import { Input, Image, Button } from 'react-native-elements'
 
@@ -355,43 +356,19 @@ class ElementScreen extends React.Component {
               this.props.items.length > 0 && this.props.items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={{ uri: p.uri }}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, { uri: p.uri }, p, styles)
                   )
                 } else if (p.type === 'video') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/video.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/video.png'), p, styles)
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/voice.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/voice.png'), p, styles)
                   )
                 } else if (p.type === 'text') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/text.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/text.png'), p, styles)
                   )
                 }
               })}

@@ -62,8 +62,8 @@ class PreviewElementScreen extends React.Component {
 
   render() {
     let { imageUri } = this.state;
-    let { caption } = this.state.params.item;
-    let { geo } = this.state.params.item;
+    let { caption, timestamp, geo } = this.state.params.item;
+    let readableTimestamp = new Date(timestamp).toDateString();
     let readonly = this.props.navigation.getParam('readonly', false);
     let uri = this.props.navigation.getParam('imageUri', null);
 
@@ -117,6 +117,7 @@ class PreviewElementScreen extends React.Component {
                 </Fragment>
             }
             <Text>Caption: {caption}</Text>
+            <Text>Timestamp: {readableTimestamp}</Text>
           </View>
         </View>
       </ScrollView>

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
-
+import { renderTouchables } from '../js/renderFunctions'
 import { Input, Image, Button } from 'react-native-elements'
 
 import { HeaderBackButton } from 'react-navigation';
@@ -274,7 +274,6 @@ class EditElementScreen extends React.Component {
       // Unsupported type
       return;
     }
-
     // Safety for lat/long
     curr.push(
       {
@@ -362,7 +361,7 @@ class EditElementScreen extends React.Component {
           <View style={{
             margin: 10,
             flex: 1,
-            flexDirection: 'row',
+            flexDirection: 'column',
             flexWrap: 'wrap',
             alignItems: 'flex-start',
             alignContent: 'flex-start'
@@ -371,43 +370,19 @@ class EditElementScreen extends React.Component {
               this.props.currentInspection.elements.length > 0 && this.props.currentInspection.elements[this.state.params.index].items && this.props.currentInspection.elements[this.state.params.index].items.length > 0 && this.props.currentInspection.elements[this.state.params.index].items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={{ uri: p.uri }}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, { uri: p.uri }, p, styles)
                   )
                 } else if (p.type === 'video') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/video.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/video.png'), p, styles)
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/voice.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/voice.png'), p, styles)
                   )
                 } else if (p.type === 'text') {
                   return (
-                    <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                      <Image
-                        key={i}
-                        style={styles.image}
-                        source={require('../assets/images/text.png')}
-                      />
-                    </TouchableHighlight>
+                    renderTouchables(i, require('../assets/images/text.png'), p, styles)
                   )
                 }
               })}
@@ -416,7 +391,7 @@ class EditElementScreen extends React.Component {
             <View style={{
               margin: 10,
               flex: 1,
-              flexDirection: 'row',
+              flexDirection: 'column',
               flexWrap: 'wrap',
               alignItems: 'flex-start',
               alignContent: 'flex-start'
@@ -425,43 +400,19 @@ class EditElementScreen extends React.Component {
                 this.props.items.length > 0 && this.props.items.map((p, i) => {
                   if (p.type === 'photo') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={{ uri: p.uri }}
-                        />
-                      </TouchableHighlight>
+                      renderTouchables(i, { uri: p.uri }, p, styles)
                     )
                   } else if (p.type === 'video') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/video.png')}
-                        />
-                      </TouchableHighlight>
+                      renderTouchables(i, require('../assets/images/video.png'), p, styles)
                     )
                   } else if (p.type === 'voice') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/voice.png')}
-                        />
-                      </TouchableHighlight>
+                      renderTouchables(i, require('../assets/images/voice.png'), p, styles) 
                     )
                   } else if (p.type === 'text') {
                     return (
-                      <TouchableHighlight key={i} underlayColor='#fff' onPress={() => this.showElement(p)}>
-                        <Image
-                          key={i}
-                          style={styles.image}
-                          source={require('../assets/images/text.png')}
-                        />
-                      </TouchableHighlight>
+                      renderTouchables(i, require('../assets/images/text.png'), p, styles)
                     )
                   }
                 })}
