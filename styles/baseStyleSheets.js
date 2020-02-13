@@ -307,4 +307,24 @@ export const videoScreenStyles = StyleSheet.create({
   }
 })
 // This is used as the base style for most screens on the app
-export const baseStyles = StyleSheet.compose(containerStyles, dateContainerStyles, imageStyles)
+export const baseStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+  },
+  dateContainer: {
+    padding: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  image: {
+    width: 85,
+    height: 85,
+    margin: 2,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+  }
+});
