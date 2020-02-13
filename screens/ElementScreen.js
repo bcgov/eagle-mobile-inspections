@@ -356,19 +356,19 @@ class ElementScreen extends React.Component {
               this.props.items.length > 0 && this.props.items.map((p, i) => {
                 if (p.type === 'photo') {
                   return (
-                    renderTouchables(i, { uri: p.uri }, p, styles)
+                    renderTouchables(i, { uri: p.uri }, p, styles, (p) => this.showElement(p))
                   )
                 } else if (p.type === 'video') {
                   return (
-                    renderTouchables(i, require('../assets/images/video.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/video.png'), p, styles, (p) => this.showElement(p))
                   )
                 } else if (p.type === 'voice') {
                   return (
-                    renderTouchables(i, require('../assets/images/voice.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/voice.png'), p, styles, (p) => this.showElement(p))
                   )
                 } else if (p.type === 'text') {
                   return (
-                    renderTouchables(i, require('../assets/images/text.png'), p, styles)
+                    renderTouchables(i, require('../assets/images/text.png'), p, styles, (p) => this.showElement(p))
                   )
                 }
               })}
