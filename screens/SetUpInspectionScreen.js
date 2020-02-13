@@ -1,27 +1,25 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import {
   Alert,
   ScrollView,
-  StyleSheet,
   TextInput,
   Text,
   AsyncStorage,
   View,
   Button
-} from 'react-native';
-
+} from 'react-native'
 import { ListItem, Input } from 'react-native-elements'
-
-import { HeaderBackButton } from 'react-navigation';
-import DatePicker from 'react-native-datepicker';
-import store from '../js/store';
-import { uploadInspection } from '../api/eagleAPI';
-import * as Action from '../js/actionTypes';
+import { HeaderBackButton } from 'react-navigation'
+import DatePicker from 'react-native-datepicker'
+import store from '../js/store'
+import { uploadInspection } from '../api/eagleAPI'
+import * as Action from '../js/actionTypes'
+import { setupInspectionScreenStyles as styles } from '../styles'
 
 class SetUpInspectionScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
+    const { params = {} } = navigation.state
     return {
       headerTitleStyle: {
         color: 'white'
@@ -38,14 +36,14 @@ class SetUpInspectionScreen extends React.Component {
           disabled={params ? params.disableSave : true}
           onPress={() => params.saveInspection(params.self)}
         />
-      ),
+      )
     }
   };
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleStoreStateChange = this.handleStoreStateChange.bind(this);
+    this.handleStoreStateChange = this.handleStoreStateChange.bind(this)
     this.state = {
       name: props.currentInspection.name,
       project: props.currentInspection.project,
@@ -62,200 +60,203 @@ class SetUpInspectionScreen extends React.Component {
   }
 
   saveInspection(self) {
-    self.props.currentInspection.name = self.state.name;
-    self.props.currentInspection.startDate = self.state.startDate;
-    self.props.currentInspection.endDate = self.state.endDate;
-    self.props.currentInspection.case = self.state.case;
-    self.props.currentInspection.label = self.state.label;
+    self.props.currentInspection.name = self.state.name
+    self.props.currentInspection.startDate = self.state.startDate
+    self.props.currentInspection.endDate = self.state.endDate
+    self.props.currentInspection.case = self.state.case
+    self.props.currentInspection.label = self.state.label
 
     // Persist this into the inspections array
     // Find it if it exists, otherwise it's a new one.
-    let inspections = [];
+    let inspections = []
     if (self.props.inspections && self.props.inspections.length > 0) {
-      inspections = [...self.props.inspections];
-      let idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId');
+      inspections = [...self.props.inspections]
+      const idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId')
 
       if (idx !== -1) {
-        console.log("updating inspection @", idx);
-        inspections[idx] = self.props.currentInspection;
+        console.log('updating inspection @', idx)
+        inspections[idx] = self.props.currentInspection
       } else {
-        console.log("adding inspection");
-        inspections.push(self.props.currentInspection);
+        console.log('adding inspection')
+        inspections.push(self.props.currentInspection)
       }
     } else {
-      inspections.push(self.props.currentInspection);
+      inspections.push(self.props.currentInspection)
     }
-    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections });
+    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections })
     self.props.navigation.goBack(null)
   }
 
   getIndex(value, arr, prop) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i][prop] === value) {
-        return i;
+        return i
       }
     }
-    return -1; //to handle the case where the value doesn't exist
+    return -1 // to handle the case where the value doesn't exist
   }
 
   addNewElement() {
-    this.props.navigation.navigate('ElementScreen', { ...this.state.params });
+    this.props.navigation.navigate('ElementScreen', { ...this.state.params })
   }
 
   componentDidMount() {
-
-    console.log("componentDidMount");
+    console.log('componentDidMount')
 
     // Ask
-    navigator.geolocation.requestAuthorization();
+    navigator.geolocation.requestAuthorization()
 
-    this.props.navigation.setParams({ promptBeforeNavigating: this.promptBeforeNavigating });
-    this.props.navigation.setParams({ saveInspection: this.saveInspection });
-    this.props.navigation.setParams({ disableSave: true });
-    this.props.navigation.setParams({ self: this });
+    this.props.navigation.setParams({ promptBeforeNavigating: this.promptBeforeNavigating })
+    this.props.navigation.setParams({ saveInspection: this.saveInspection })
+    this.props.navigation.setParams({ disableSave: true })
+    this.props.navigation.setParams({ self: this })
 
-    this.state.focusListener = this.props.navigation.addListener("didFocus",() => {
-      this.validateForm();
-    });
+    this.state.focusListener = this.props.navigation.addListener('didFocus', () => {
+      this.validateForm()
+    })
   }
 
   componentWillUnmount() {
     // // Remove the listener when you are done
     this.state.focusListener.remove()
-    this.state.unsub();
+    this.state.unsub()
   }
 
   handleStoreStateChange() {
     // console.log('handle store state change curr', this.props.currentInspection);
     // console.log('handle store state change insps', this.props.inspections);
-    let storingValue = JSON.stringify(store.getState())
+    const storingValue = JSON.stringify(store.getState())
     // console.log('storingValue', storingValue);
-    AsyncStorage.setItem('completeStore', storingValue);
-    this.setState(this.props.currentInspection);
+    AsyncStorage.setItem('completeStore', storingValue)
+    this.setState(this.props.currentInspection)
   }
 
   promptBeforeNavigating(self) {
     if (self.state.inspectionUpdatedFlag) {
       Alert.alert(
-        //title
+        // title
         'Warning',
-        //body
+        // body
         'Your changes have not been saved. Would you like to discard them?',
         [
           { text: 'Yes', onPress: () => self.props.navigation.goBack(null) },
-          { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' },
+          { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' }
         ],
         { cancelable: false }
-      );
+      )
     } else {
       self.props.navigation.goBack(null)
     }
   }
 
   selectProjectComponent() {
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation
     navigate('SelectProject', { onSelectProject: this.onSelectProject })
   }
 
   changeInspectionName(text) {
-    this.setState({ name: text });
-    this.setState({ inspectionUpdatedFlag: true });
+    this.setState({ name: text })
+    this.setState({ inspectionUpdatedFlag: true })
   }
+
   changeStartDate(dateString) {
     if (this.areDatesValid(true, dateString)) {
       this.setState({
         startDate: this.convertDateStringToJSDate(dateString)
       }, () => {
-      });
-      this.setState({ inspectionUpdatedFlag: true });
+      })
+      this.setState({ inspectionUpdatedFlag: true })
     } else {
       this.setState({
         startDate: this.convertDateStringToJSDate(dateString)
       }, () => {
-        this.validateForm();
-      });
+        this.validateForm()
+      })
     }
   }
+
   changeEndDate(dateString) {
     if (this.areDatesValid(false, dateString)) {
       this.setState({
         endDate: this.convertDateStringToJSDate(dateString)
       }, () => {
-        this.validateForm();
-      });
-      this.setState({ inspectionUpdatedFlag: true });
+        this.validateForm()
+      })
+      this.setState({ inspectionUpdatedFlag: true })
     } else {
       this.setState({
         endDate: null
       }, () => {
-        this.validateForm();
-      });
+        this.validateForm()
+      })
     }
-
   }
+
   areDatesValid(isStartDate, dateString) {
     if (isStartDate) {
       if (this.state.endDate == null) {
-        return true;
+        return true
       } else if (this.state.endDate >= this.convertDateStringToJSDate(dateString)) {
-        return true;
+        return true
       } else {
-        Alert.alert('Your dates are invalid.');
-        setTimeout(() => Alert.alert('Your dates are invalid.'), 1000);
-        return false;
+        Alert.alert('Your dates are invalid.')
+        setTimeout(() => Alert.alert('Your dates are invalid.'), 1000)
+        return false
       }
     } else {
       if (this.state.startDate == null) {
-        return true;
+        return true
       } else if (this.state.startDate <= this.convertDateStringToJSDate(dateString)) {
-        return true;
+        return true
       } else {
-        setTimeout(() => Alert.alert('Your dates are invalid.'), 1000);
-        return false;
+        setTimeout(() => Alert.alert('Your dates are invalid.'), 1000)
+        return false
       }
     }
   }
+
   changeCase(text) {
-    this.setState({ case: text });
-    this.setState({ inspectionUpdatedFlag: true });
+    this.setState({ case: text })
+    this.setState({ inspectionUpdatedFlag: true })
   }
+
   changeLabel(text) {
-    this.setState({ label: text });
-    this.setState({ inspectionUpdatedFlag: true });
+    this.setState({ label: text })
+    this.setState({ inspectionUpdatedFlag: true })
   }
 
   validateForm() {
     if (
-      this.state.name == null || this.state.name == '' ||
-      (this.state.project == null && this.state.customProjectName == null) ||
-      this.state.startDate == null ||
-      this.state.endDate == null
+      this.state.name === null || this.state.name === '' ||
+      (this.state.project === null && this.state.customProjectName === null) ||
+      this.state.startDate === null ||
+      this.state.endDate === null
     ) {
-      this.props.navigation.setParams({ disableSave: true });
+      this.props.navigation.setParams({ disableSave: true })
     } else {
-      this.props.navigation.setParams({ disableSave: false });
+      this.props.navigation.setParams({ disableSave: false })
     }
   }
 
   convertDateStringToJSDate(dateString) {
-    var dateArray = dateString.split('-');
-    var date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
-    return date.toISOString();
+    var dateArray = dateString.split('-')
+    var date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2])
+    return date.toISOString()
   }
 
   async submitInspection(self) {
-    let resp = await uploadInspection(self.props.currentUser, self.props.currentInspection);
+    const resp = await uploadInspection(self.props.currentUser, self.props.currentInspection)
     if (resp && resp.status === 'Submitted') {
-      self.props.currentInspection.status = 'Submitted';
-      self.props.navigation.navigate('Inspections');
+      self.props.currentInspection.status = 'Submitted'
+      self.props.navigation.navigate('Inspections')
     }
-    self.saveInspection(self);
+    self.saveInspection(self)
   }
 
   render() {
-    if (this.props.currentInspection === undefined
-      || !this.props.currentInspection.elements) {
-      return null;
+    if (this.props.currentInspection === undefined ||
+      !this.props.currentInspection.elements) {
+      return null
     }
 
     return (
@@ -306,8 +307,8 @@ class SetUpInspectionScreen extends React.Component {
               <Text>Start Date</Text>
               <DatePicker
                 style={{ width: 150 }}
-                date={this.state.startDate} //initial date from state
-                mode="date" //The enum of date, datetime and time
+                date={this.state.startDate} // initial date from state
+                mode="date" // The enum of date, datetime and time
                 placeholder="select date"
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
@@ -330,8 +331,8 @@ class SetUpInspectionScreen extends React.Component {
               <Text>End Date</Text>
               <DatePicker
                 style={{ width: 150 }}
-                date={this.state.endDate} //initial date from state
-                mode="date" //The enum of date, datetime and time
+                date={this.state.endDate} // initial date from state
+                mode="date" // The enum of date, datetime and time
                 placeholder="select date"
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
@@ -383,7 +384,7 @@ class SetUpInspectionScreen extends React.Component {
           </View>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -393,29 +394,7 @@ function mapStoreStateToProps(storeState) {
     projects: storeState.models.projects,
     currentInspection: storeState.models.currentInspection,
     inspections: storeState.models.inspections,
-    requestError: storeState.ui.requests.error,
-  };
-}
-export default connect(mapStoreStateToProps)(SetUpInspectionScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  dateContainer: {
-    padding: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  image: {
-    width: 85,
-    height: 85,
-    margin: 2,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    requestError: storeState.ui.requests.error
   }
-});
+}
+export default connect(mapStoreStateToProps)(SetUpInspectionScreen)

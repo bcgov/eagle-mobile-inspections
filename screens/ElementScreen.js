@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import {
   TextInput,
   ScrollView,
-  StyleSheet,
   Linking,
   Alert,
   Text,
@@ -11,7 +10,7 @@ import {
 } from 'react-native';
 import Moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
-import { renderTouchables } from '../js/renderFunctions'
+import { renderTouchables } from '../js/components'
 
 import { Input, Button } from 'react-native-elements'
 
@@ -20,10 +19,10 @@ import SimplePicker from 'react-native-simple-picker';
 import store from '../js/store';
 import * as Action from '../js/actionTypes';
 import * as uuid from 'react-native-uuid';
+import { elementScreenStyles as styles, viewFlexColumn } from '../styles/baseStyleSheets'
+import { elementOptions } from '../js/config';
 
 // Add element screen
-
-const options = ['Photo', 'Video', 'Voice', 'Theodolite', 'Choose from library' ];
 
 class ElementScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -178,19 +177,10 @@ class ElementScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    // // Remove the listener when you are done
-    // didBlurSubscription.remove();
-    console.log("componentWillUnmount");
     this.state.unsub();
   }
 
   handleStoreStateChange() {
-    // console.log('handle store state change curr', this.props.currentInspection);
-    // console.log('handle store state change items', this.props.items);
-    // let storingValue = JSON.stringify(store.getState())
-    // console.log('storingValue', storingValue);
-    // AsyncStorage.setItem('completeStore', storingValue);
-    // this.setState(this.props.currentInspection);
     this.setState({ items: this.props.items });
   }
 
@@ -343,14 +333,7 @@ class ElementScreen extends React.Component {
               onChangeText={(description) => this.setState({ description: description, elementChangedFlag: true })}
             />
           </View>
-          <View style={{
-            margin: 10,
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-            alignContent: 'flex-start'
-          }}>
+          <View style={viewFlexColumn}>
             {
               this.props.items.length > 0 && this.props.items.map((p, i) => {
                 if (p.type === 'photo') {
@@ -380,7 +363,7 @@ class ElementScreen extends React.Component {
         />
         <SimplePicker
           ref={'picker'}
-          options={options}
+          options={elementOptions}
           onSubmit={(option) => {
             switch (option) {
               case 'Theodolite':
@@ -419,25 +402,3 @@ function mapStoreStateToProps(storeState) {
   };
 }
 export default connect(mapStoreStateToProps)(ElementScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  dateContainer: {
-    padding: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  image: {
-    width: 85,
-    height: 85,
-    margin: 2,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
-  }
-});

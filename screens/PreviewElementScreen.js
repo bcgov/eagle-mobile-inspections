@@ -1,14 +1,13 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
   ScrollView,
-  StyleSheet,
   Text,
   View,
   Dimensions
-} from 'react-native';
+} from 'react-native'
 import { Image } from 'react-native-elements'
-import { ConnectableObservable } from 'rx';
+import { previewElementScreenStyles as styles } from '../styles/baseStyleSheets'
 
 class PreviewElementScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -24,69 +23,68 @@ class PreviewElementScreen extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       params: props.navigation.state.params,
       imageUri: null
     }
-    console.log('PARAMS:', props.navigation.state.params.index);
+    console.log('PARAMS:', props.navigation.state.params.index)
   }
 
   goBackToEdit() {
-    this.props.navigation.navigate(this.state.params.back);
+    this.props.navigation.navigate(this.state.params.back)
   }
 
   goBack() {
-    this.props.navigation.navigate(this.state.params.back, { inspectionId: this.props.currentInspection.inspectionId });
+    this.props.navigation.navigate(this.state.params.back, { inspectionId: this.props.currentInspection.inspectionId })
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ saveImage: this.saveImage });
+    this.props.navigation.setParams({ saveImage: this.saveImage })
   }
 
   componentWillUnmount() {
   }
 
-  takePicture = async () => {
+  takePicture = async() => {
     if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      this.setState({ imageUri: data.uri });
-      console.log(data.uri);
+      const options = { quality: 0.5, base64: true }
+      const data = await this.camera.takePictureAsync(options)
+      this.setState({ imageUri: data.uri })
+      console.log(data.uri)
     }
   };
 
   goToCamera() {
-    this.setState({ imageUri: null });
+    this.setState({ imageUri: null })
   }
 
   render() {
-    let { imageUri } = this.state;
-    let { caption, timestamp, geo } = this.state.params.item;
-    let readableTimestamp = new Date(timestamp).toDateString();
-    let readonly = this.props.navigation.getParam('readonly', false);
-    let uri = this.props.navigation.getParam('imageUri', null);
+    let { imageUri } = this.state
+    const { caption, timestamp, geo } = this.state.params.item
+    const readableTimestamp = new Date(timestamp).toDateString()
+    const readonly = this.props.navigation.getParam('readonly', false)
+    const uri = this.props.navigation.getParam('imageUri', null)
 
     // Saved images store their geo data as an array. Images coming from the camera
     // store their geo data as an object.
-    let lat;
-    let lon;
+    let lat
+    let lon
     if (Array.isArray(geo)) {
-      lat = geo[0];
-      lon = geo[1];
-    } 
-    else if (typeof geo === 'object' && geo !== null ) {
-      lat = geo.latitude;
-      lon = geo.longitude;
+      lat = geo[0]
+      lon = geo[1]
+    } else if (typeof geo === 'object' && geo !== null) {
+      lat = geo.latitude
+      lon = geo.longitude
     }
 
-    const win = Dimensions.get('window');
+    const win = Dimensions.get('window')
 
     if (readonly) {
-      imageUri = uri;
+      imageUri = uri
     }
 
-    console.log("URI:", uri);
+    console.log('URI:', uri)
     // Preview of image that has already been saved
     return (
       <ScrollView>
@@ -94,7 +92,7 @@ class PreviewElementScreen extends React.Component {
           <View
             style={{
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'center'
             }}>
             <ScrollView
               maximumZoomScale={2.5}
@@ -112,16 +110,16 @@ class PreviewElementScreen extends React.Component {
             {!lat || !lon
               ? <Text>No GPS data available</Text>
               : <Fragment>
-                  <Text>Lat: {lat}</Text>
-                  <Text>Lon: {lon}</Text>
-                </Fragment>
+                <Text>Lat: {lat}</Text>
+                <Text>Lon: {lon}</Text>
+              </Fragment>
             }
             <Text>Caption: {caption}</Text>
             <Text>Timestamp: {readableTimestamp}</Text>
           </View>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
@@ -132,16 +130,7 @@ function mapStoreStateToProps(storeState) {
     projects: storeState.models.projects,
     currentInspection: storeState.models.currentInspection,
     items: storeState.models.items,
-    requestError: storeState.ui.requests.error,
-  };
-}
-export default connect(mapStoreStateToProps)(PreviewElementScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    marginTop: 50
+    requestError: storeState.ui.requests.error
   }
-});
+}
+export default connect(mapStoreStateToProps)(PreviewElementScreen)
