@@ -182,6 +182,16 @@ class RecorderScreen extends React.Component {
             <Text>Caption: {this.state.params.item.caption}</Text>
           </View>
         }
+        <View style={styles.messageContainer}>
+          {
+            this.state.playState == 'recording' &&
+            <Text style={styles.message}>Recording</Text>
+          }
+          {
+            (rec !== '' && this.state.playState !== 'recording') &&
+            <Text>Use buttons below to listen to recording</Text>
+          }
+        </View>
         <View style={styles.container}>
           {!readonly &&
             <View>
@@ -290,5 +300,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
     alignContent: 'center'
+  },
+  messageContainer: {
+    marginTop: 80,
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    fontSize: 20
+  },
+  message: {
+    fontSize: 26,
   }
 });
