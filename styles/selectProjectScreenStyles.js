@@ -1,3 +1,2 @@
-import { StyleSheet } from 'react-native'
-import { containerStyles, customProjectStyles } from './baseStyleSheets'
-export const selectProjectScreenStyles = StyleSheet.compose(containerStyles, customProjectStyles)
+import { projectScreenStyles } from './baseStyleSheets'
+export const selectProjectScreenStyles = projectScreenStyles

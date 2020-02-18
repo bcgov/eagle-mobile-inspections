@@ -306,6 +306,53 @@ export const videoScreenStyles = StyleSheet.create({
     height: 300
   }
 })
+export const inspectionStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+  },
+  dateContainer: {
+    padding: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  image: {
+    width: 85,
+    height: 85,
+    margin: 2,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+  },
+  footer: {
+    marginBottom: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-end',
+    alignContent: 'center',
+  }
+});
+export const projectScreenStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#fff',
+  },
+  customProjectStyle: {
+    flexDirection: 'row',
+    width: window.width,
+    margin: 10,
+    padding: 4,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 2,
+    borderColor: '#888',
+    borderRadius: 5,
+  }
+});
 // This is used as the base style for most screens on the app
 export const baseStyles = StyleSheet.create({
   container: {
