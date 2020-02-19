@@ -10,7 +10,7 @@ import {
 import { HeaderBackButton } from 'react-navigation'
 
 import { Button } from 'react-native-elements'
-import { AddCaptionScreenStyles as styles } from '../styles/index.js'
+import { addCaptionScreenStyles as styles } from '../styles/index.js'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 
