@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "eslint.options": {
+    "extensions":  [".jsx", ".js"]
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascript:react",
+    "jsx"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false     
+}

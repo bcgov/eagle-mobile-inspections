@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import { Image } from 'react-native-elements'
 export const renderTouchables = (key, imageSource, item, styles, showFunction) => {
-    return (
+  return (
     <View key={key}>
       <TouchableHighlight key={key} underlayColor='#fff' onPress={showFunction}>
         <Image

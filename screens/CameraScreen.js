@@ -1,22 +1,21 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import {
   ImageBackground,
-  StyleSheet,
   View,
   Image
-} from 'react-native';
-
+} from 'react-native'
+import { cameraScreenStyles as styles } from '../styles/index.js'
 import { Button, Icon } from 'react-native-elements'
-import { withNavigationFocus } from "react-navigation";
-import { RNCamera } from 'react-native-camera';
+import { withNavigationFocus } from 'react-navigation'
+import { RNCamera } from 'react-native-camera'
 
-import store from '../js/store';
-import * as Action from '../js/actionTypes';
+import store from '../js/store'
+import * as Action from '../js/actionTypes'
 
 class CameraScreen extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.isFocused;
+    return nextProps.isFocused
   }
 
   static navigationOptions = {
@@ -24,104 +23,104 @@ class CameraScreen extends React.Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       params: props.navigation.state.params,
       imageUri: null,
       imageHeight: null,
       imageWidth: null,
-      useFlash: false,
+      useFlash: false
     }
   }
 
   async saveImage() {
     // Save to this inspection's redux
-    let curr = this.props.items;
-    let data = await new Promise(function (r, j) {
-      navigator.geolocation.getCurrentPosition(function (loc) {
-        r(loc);
-      }, function (err) {
-        console.log("err:", err);
-        r(null);
-      });
-    });
+    let curr = this.props.items
+    const data = await new Promise(function(r, j) {
+      navigator.geolocation.getCurrentPosition(function(loc) {
+        r(loc)
+      }, function(err) {
+        console.log('err:', err)
+        r(null)
+      })
+    })
 
     if (!curr) {
-      curr = [];
+      curr = []
     }
 
     // Safety for lat/long
     if (data !== null) {
-      curr.push({ type: 'photo', uri: this.state.imageUri, geo: data.coords, caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'photo', uri: this.state.imageUri, geo: data.coords, caption: '', timestamp: new Date().toISOString() })
     } else {
-      curr.push({ type: 'photo', uri: this.state.imageUri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'photo', uri: this.state.imageUri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() })
     }
-    store.dispatch({ type: Action.UPDATE_ITEMS, items: curr });
+    store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
 
-    this.props.navigation.navigate('AddCaptionScreen', { back: this.state.params.back });
+    this.props.navigation.navigate('AddCaptionScreen', { back: this.state.params.back })
   }
 
   goBackToEdit() {
-    this.props.navigation.navigate(this.state.params.back);
+    this.props.navigation.navigate(this.state.params.back)
   }
 
   goBack() {
-    this.props.navigation.navigate(this.state.params.back, { inspectionId: this.props.currentInspection.inspectionId });
+    this.props.navigation.navigate(this.state.params.back, { inspectionId: this.props.currentInspection.inspectionId })
   }
 
   componentDidMount() {
-    console.log("CameraScreen: componentDidMount");
-    this.props.navigation.setParams({ saveImage: this.saveImage });
-    this.fetch();
+    console.log('CameraScreen: componentDidMount')
+    this.props.navigation.setParams({ saveImage: this.saveImage })
+    this.fetch()
   }
 
   componentWillUnmount() {
-    console.log("CameraScreen: componentWillUnmount");
+    console.log('CameraScreen: componentWillUnmount')
   }
 
-  fetch = async () => {
-    console.log("fetching...");
-    this.setState({ loading: true });
+  fetch = async() => {
+    console.log('fetching...')
+    this.setState({ loading: true })
     // await getLocalInspections();
-    this.setState({ loading: false });
+    this.setState({ loading: false })
   }
 
-  takePicture = async () => {
+  takePicture = async() => {
     if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      this.setState({ imageUri: data.uri });
+      const options = { quality: 0.5, base64: true }
+      const data = await this.camera.takePictureAsync(options)
+      this.setState({ imageUri: data.uri })
 
       // Get the height and width.
       Image.getSize(data.uri, (width, height) => {
         this.setState({
           imageWidth: width,
-          imageHeight: height,
-        });
-      });
+          imageHeight: height
+        })
+      })
     }
   };
 
   goToCamera() {
-    this.setState({ imageUri: null });
+    this.setState({ imageUri: null })
   }
 
   switchFlash() {
-    this.setState(previousState => ({ useFlash: !previousState.useFlash }));
+    this.setState(previousState => ({ useFlash: !previousState.useFlash }))
   }
 
   render() {
-    const isFocused = this.props.isFocused;
+    const isFocused = this.props.isFocused
     if (!isFocused) {
-      return null;
+      return null
     } else {
       // Image from camera
-      let { imageUri, imageHeight, imageWidth } = this.state;
-      let controlColour = 'white';
+      const { imageUri, imageHeight, imageWidth } = this.state
+      let controlColour = 'white'
 
       // Determine the colour of the controls. Make them dark if the image is landscape.
       if (imageWidth > imageHeight) {
-        controlColour = 'black';
+        controlColour = 'black'
       }
 
       if (imageUri) {
@@ -136,7 +135,7 @@ class CameraScreen extends React.Component {
               <View style={{
                 flex: 1,
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                justifyContent: 'space-between'
               }}>
                 <View style={{ flex: 0.9 }} />
                 <View style={styles.bottomButtons}>
@@ -175,7 +174,7 @@ class CameraScreen extends React.Component {
           <View style={styles.container}>
             <RNCamera
               ref={ref => {
-                this.camera = ref;
+                this.camera = ref
               }}
               style={styles.preview}
               type={RNCamera.Constants.Type.back}
@@ -184,16 +183,16 @@ class CameraScreen extends React.Component {
                 title: 'Permission to use camera',
                 message: 'We need your permission to use your camera',
                 buttonPositive: 'Ok',
-                buttonNegative: 'Cancel',
+                buttonNegative: 'Cancel'
               }}
               androidRecordAudioPermissionOptions={{
                 title: 'Permission to use audio recording',
                 message: 'We need your permission to use your audio',
                 buttonPositive: 'Ok',
-                buttonNegative: 'Cancel',
+                buttonNegative: 'Cancel'
               }}
               onGoogleVisionBarcodesDetected={({ barcodes }) => {
-                console.log(barcodes);
+                console.log(barcodes)
               }}
             >
               <View style={styles.topButtons}>
@@ -242,7 +241,7 @@ class CameraScreen extends React.Component {
               </View>
             </RNCamera>
           </View>
-        );
+        )
       }
     }
   }
@@ -255,55 +254,7 @@ function mapStoreStateToProps(storeState) {
     projects: storeState.models.projects,
     currentInspection: storeState.models.currentInspection,
     items: storeState.models.items,
-    requestError: storeState.ui.requests.error,
-  };
-}
-export default connect(mapStoreStateToProps)(withNavigationFocus(CameraScreen));
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-  },
-  preview: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: 'orange'
-  },
-  topButtons: {
-    flex: 0.1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    alignContent: 'center',
-    height: 50,
-    marginTop: 40
-  },
-  centeredBottomButton: {
-    flex: 0.1,
-    height: 50,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    alignContent: 'center',
-  },
-  bottomButtons: {
-    flex: 0.1,
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-  },
-  testContainer: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    requestError: storeState.ui.requests.error
   }
-});
+}
+export default connect(mapStoreStateToProps)(withNavigationFocus(CameraScreen))

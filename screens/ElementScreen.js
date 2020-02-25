@@ -1,33 +1,31 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import {
   TextInput,
   ScrollView,
-  StyleSheet,
   Linking,
   Alert,
   Text,
-  View,
-} from 'react-native';
-import Moment from 'moment';
-import ImagePicker from 'react-native-image-picker';
-import { renderTouchables } from '../js/renderFunctions'
+  View
+} from 'react-native'
+import Moment from 'moment'
+import ImagePicker from 'react-native-image-picker'
+import { renderTouchables } from '../js/components'
 
 import { Input, Button } from 'react-native-elements'
 
-import { HeaderBackButton } from 'react-navigation';
-import SimplePicker from 'react-native-simple-picker';
-import store from '../js/store';
-import * as Action from '../js/actionTypes';
-import * as uuid from 'react-native-uuid';
+import { HeaderBackButton } from 'react-navigation'
+import SimplePicker from 'react-native-simple-picker'
+import store from '../js/store'
+import * as Action from '../js/actionTypes'
+import * as uuid from 'react-native-uuid'
+import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.js'
+import { elementOptions } from '../js/config'
 
 // Add element screen
-
-const options = ['Photo', 'Video', 'Voice', 'Theodolite', 'Choose from library' ];
-
 class ElementScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
+    const { params = {} } = navigation.state
     return {
       headerTitleStyle: {
         color: 'white'
@@ -43,14 +41,14 @@ class ElementScreen extends React.Component {
           type="clear"
           onPress={() => params.saveElement(params.self)}
         />
-      ),
+      )
     }
   };
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleStoreStateChange = this.handleStoreStateChange.bind(this);
+    this.handleStoreStateChange = this.handleStoreStateChange.bind(this)
 
     this.state = {
       title: '',
@@ -64,17 +62,17 @@ class ElementScreen extends React.Component {
 
   saveElement(self) {
     // Nav back to the other screen
-    console.log("thiscurrentinsp:", self.props.currentInspection);
-    console.log("this.state:", self.state);
+    console.log('thiscurrentinsp:', self.props.currentInspection)
+    console.log('this.state:', self.state)
 
     // Add each element
-    let items = [];
+    const items = []
     self.props.items.forEach(item => {
-      item.itemId = uuid.v4();
-      items.push(item);
-    });
+      item.itemId = uuid.v4()
+      items.push(item)
+    })
 
-    console.log("Packed Items:", items);
+    console.log('Packed Items:', items)
 
     self.props.currentInspection.elements.push({
       elementId: uuid.v4(),
@@ -83,83 +81,83 @@ class ElementScreen extends React.Component {
       description: self.state.description,
       items: items,
       timestamp: new Date().toISOString()
-    });
+    })
 
-    console.log("Packed Elements:", self.props.currentInspection.elements);
+    console.log('Packed Elements:', self.props.currentInspection.elements)
 
     // Add this new element to the main inspection.
-    let inspections = [];
+    let inspections = []
     if (self.props.inspections && self.props.inspections.length > 0) {
-      inspections = [...self.props.inspections];
-      let idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId');
+      inspections = [...self.props.inspections]
+      const idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId')
 
       if (idx !== -1) {
-        console.log("updating inspection @", idx);
-        inspections[idx] = self.props.currentInspection;
+        console.log('updating inspection @', idx)
+        inspections[idx] = self.props.currentInspection
       } else {
-        console.log("adding inspection");
-        inspections.push(self.props.currentInspection);
+        console.log('adding inspection')
+        inspections.push(self.props.currentInspection)
       }
     } else {
-      inspections.push(self.props.currentInspection);
+      inspections.push(self.props.currentInspection)
     }
-    store.dispatch({ type: Action.UPDATE_ITEMS, items: [] });
-    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections });
+    store.dispatch({ type: Action.UPDATE_ITEMS, items: [] })
+    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections })
     self.props.navigation.goBack(null)
   }
 
   promptBeforeNavigating(self) {
     if (self.state.elementChangedFlag) {
       Alert.alert(
-        //title
+        // title
         'Warning',
-        //body
+        // body
         'Your changes have not been saved. Would you like to discard them?',
         [
           { text: 'Yes', onPress: () => store.dispatch({ type: Action.UPDATE_ITEMS, items: [] }) && self.props.navigation.goBack(null) },
-          { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' },
+          { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' }
         ],
         { cancelable: false }
-      );
+      )
     } else {
-      self.props.navigation.goBack(null);
+      self.props.navigation.goBack(null)
     }
   }
 
   removeInspection(self) {
-    let inspections = [];
+    let inspections = []
     if (self.props.inspections && self.props.inspections.length > 0) {
-      inspections = [...self.props.inspections];
-      let idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId');
+      inspections = [...self.props.inspections]
+      const idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId')
 
       if (idx !== -1) {
-        console.log("updating inspection @", idx);
-        inspections.splice([idx], 1);
+        console.log('updating inspection @', idx)
+        inspections.splice([idx], 1)
       }
     }
-    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections });
-    const { navigate } = self.props.navigation;
-    navigate('Home');
+    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections })
+    const { navigate } = self.props.navigation
+    navigate('Home')
   }
 
   getIndex(value, arr, prop) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i][prop] === value) {
-        return i;
+        return i
       }
     }
-    return -1; //to handle the case where the value doesn't exist
+    return -1 // to handle the case where the value doesn't exist
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    console.log('componentDidMount')
 
     // Setup the params for the header items to call back into this class.
-    console.log('Params:', this.state.params);
-    console.log("I:", this.props.inspections);
+    console.log('Params:', this.state.params)
+    console.log('I:', this.props.inspections)
 
-    let idx = this.getIndex(this.state.params.inspectionId, this.props.inspections, 'inspectionId');
-    console.log("idx:", idx);
+    const idx = this.getIndex(this.state.params.inspectionId, this.props.inspections, 'inspectionId')
+    console.log('idx:', idx)
     if (idx === -1) {
       store.dispatch({
         type: Action.CURRENT_INSPECTION,
@@ -168,115 +166,106 @@ class ElementScreen extends React.Component {
           elements: [],
           status: 'Pending'
         }
-      });
+      })
     } else {
-      store.dispatch({ type: Action.CURRENT_INSPECTION, currentInspection: this.props.inspections[idx] });
+      store.dispatch({ type: Action.CURRENT_INSPECTION, currentInspection: this.props.inspections[idx] })
     }
-    this.props.navigation.setParams({ saveElement: this.saveElement });
-    this.props.navigation.setParams({ promptBeforeNavigating: this.promptBeforeNavigating });
-    this.props.navigation.setParams({ self: this });
+    this.props.navigation.setParams({ saveElement: this.saveElement })
+    this.props.navigation.setParams({ promptBeforeNavigating: this.promptBeforeNavigating })
+    this.props.navigation.setParams({ self: this })
   }
 
   componentWillUnmount() {
-    // // Remove the listener when you are done
-    // didBlurSubscription.remove();
-    console.log("componentWillUnmount");
-    this.state.unsub();
+    this.state.unsub()
   }
 
   handleStoreStateChange() {
-    // console.log('handle store state change curr', this.props.currentInspection);
-    // console.log('handle store state change items', this.props.items);
-    // let storingValue = JSON.stringify(store.getState())
-    // console.log('storingValue', storingValue);
-    // AsyncStorage.setItem('completeStore', storingValue);
-    // this.setState(this.props.currentInspection);
-    this.setState({ items: this.props.items });
+    this.setState({ items: this.props.items })
   }
 
   async addGPS() {
     // Add GPS to text area
-    let data = await new Promise(async function (r, j) {
-      navigator.geolocation.getCurrentPosition(async function (loc) {
-        r(loc);
-      }, async function (err) {
-        console.log("err:", err);
-        r(null);
-      });
-    });
-    let curr = this.state.description;
-    this.setState({ description: curr + '\nLat: ' + data.coords.latitude + ', Long:' + data.coords.longitude + '\n', elementChangedFlag: true });
+    const data = await new Promise(async function(r, j) {
+      navigator.geolocation.getCurrentPosition(async function(loc) {
+        r(loc)
+      }, async function(err) {
+        console.log('err:', err)
+        r(null)
+      })
+    })
+    const curr = this.state.description
+    this.setState({ description: curr + '\nLat: ' + data.coords.latitude + ', Long:' + data.coords.longitude + '\n', elementChangedFlag: true })
   }
 
   async addDateStamp() {
     // Add Date to text area
-    let date = new Date();
-    let curr = this.state.description;
-    curr = curr + '\n' + Moment(date).format('MMMM DD, YYYY HH:mm:ss') + '\n';
-    this.setState({ description: curr, elementChangedFlag: true });
+    const date = new Date()
+    let curr = this.state.description
+    curr = curr + '\n' + Moment(date).format('MMMM DD, YYYY HH:mm:ss') + '\n'
+    this.setState({ description: curr, elementChangedFlag: true })
   }
 
   showElement(item) {
     switch (item.type) {
-      case 'photo':
-        this.props.navigation.navigate('PreviewElementScreen', { readonly: true, imageUri: item.uri, item: item, back: 'EditElementScreen' });
-        break;
-      case 'video':
-        this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ElementScreen' });
-        break;
-      case 'voice':
-        this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ElementScreen' });
-        break;
+    case 'photo':
+      this.props.navigation.navigate('PreviewElementScreen', { readonly: true, imageUri: item.uri, item: item, back: 'EditElementScreen' })
+      break
+    case 'video':
+      this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ElementScreen' })
+      break
+    case 'voice':
+      this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ElementScreen' })
+      break
     }
   }
 
   async openTheodolite() {
-    const url = 'theodolite://';
+    const url = 'theodolite://'
     return Linking.openURL(url).then(() => {}).catch((e) => {
       // console.log("Couldn't open theodolite", e);
       setTimeout(() => {
         Alert.alert(
-          //title
+          // title
           'Error',
-          //body
+          // body
           'Theodolite not installed.',
           [
-            { text: "OK", onPress: () => { } }
+            { text: 'OK', onPress: () => { } }
           ],
           { cancelable: false }
-        );
-      }, 1000);
-    });
+        )
+      }, 1000)
+    })
   }
 
   async getMediaFromLibrary() {
     const options = {
-      noData: true,
+      noData: true
       // mediaType: 'mixed'
-    };
+    }
     setTimeout(() => {
       ImagePicker.launchImageLibrary(options, (response) => {
         if (response.uri) {
-          this.saveImage(response);
+          this.saveImage(response)
         }
-      });
-    }, 1000);
+      })
+    }, 1000)
   }
 
   async saveImage(response) {
-    let curr = this.props.items;
+    let curr = this.props.items
     if (!curr) {
-      curr = [];
+      curr = []
     }
 
-    var type = '';
+    var type = ''
     if (response.type.includes('image')) {
-      type = 'photo';
+      type = 'photo'
     } else if (response.type.includes('video')) {
-      type = 'video';
+      type = 'video'
     } else {
       // Unsupported type
-      return;
+      return
     }
 
     // Safety for lat/long
@@ -288,16 +277,16 @@ class ElementScreen extends React.Component {
         caption: '',
         timestamp: response.timestamp ? response.timestamp : new Date().toISOString()
       }
-    );
-    store.dispatch({ type: Action.UPDATE_ITEMS, items: curr });
+    )
+    store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
 
-    this.props.navigation.navigate('AddCaptionScreen', { back: 'ElementScreen' });
+    this.props.navigation.navigate('AddCaptionScreen', { back: 'ElementScreen' })
   }
 
   render() {
-    if (this.props.currentInspection === undefined
-      || !this.props.currentInspection.elements) {
-      return null;
+    if (this.props.currentInspection === undefined ||
+      !this.props.currentInspection.elements) {
+      return null
     }
 
     return (
@@ -343,14 +332,7 @@ class ElementScreen extends React.Component {
               onChangeText={(description) => this.setState({ description: description, elementChangedFlag: true })}
             />
           </View>
-          <View style={{
-            margin: 10,
-            flex: 1,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-            alignContent: 'flex-start'
-          }}>
+          <View style={viewFlexColumn}>
             {
               this.props.items.length > 0 && this.props.items.map((p, i) => {
                 if (p.type === 'photo') {
@@ -380,32 +362,32 @@ class ElementScreen extends React.Component {
         />
         <SimplePicker
           ref={'picker'}
-          options={options}
+          options={elementOptions}
           onSubmit={(option) => {
             switch (option) {
-              case 'Theodolite':
-                this.openTheodolite();
-                break;
-              case 'Photo':
-                this.props.navigation.navigate('CameraScreen', { ...this.state.params, mode: 'photo', back: 'ElementScreen' });
-                break;
-              case 'Video':
-                this.props.navigation.navigate('VideoScreen', { ...this.state.params, mode: 'video', back: 'ElementScreen' });
-                break;
-              case 'Voice':
-                this.props.navigation.navigate('RecorderScreen', { ...this.state.params, back: 'ElementScreen' });
-                break;
-              case 'Choose from library':
-                this.getMediaFromLibrary();
-                break;
-              default:
+            case 'Theodolite':
+              this.openTheodolite()
+              break
+            case 'Photo':
+              this.props.navigation.navigate('CameraScreen', { ...this.state.params, mode: 'photo', back: 'ElementScreen' })
+              break
+            case 'Video':
+              this.props.navigation.navigate('VideoScreen', { ...this.state.params, mode: 'video', back: 'ElementScreen' })
+              break
+            case 'Voice':
+              this.props.navigation.navigate('RecorderScreen', { ...this.state.params, back: 'ElementScreen' })
+              break
+            case 'Choose from library':
+              this.getMediaFromLibrary()
+              break
+            default:
               // Fall through
             }
-            this.setState({ elementChangedFlag: true });
+            this.setState({ elementChangedFlag: true })
           }}
         />
       </View>
-    );
+    )
   }
 }
 
@@ -416,28 +398,6 @@ function mapStoreStateToProps(storeState) {
     inspections: storeState.models.inspections,
     requestError: storeState.ui.requests.error,
     items: storeState.models.items
-  };
-}
-export default connect(mapStoreStateToProps)(ElementScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  dateContainer: {
-    padding: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  image: {
-    width: 85,
-    height: 85,
-    margin: 2,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
   }
-});
+}
+export default connect(mapStoreStateToProps)(ElementScreen)

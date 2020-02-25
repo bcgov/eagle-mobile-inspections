@@ -1,27 +1,23 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import {
   Alert,
   ScrollView,
-  StyleSheet,
   Text,
   AsyncStorage,
-  View,
-} from 'react-native';
-import Moment from 'moment';
-
+  View
+} from 'react-native'
+import Moment from 'moment'
 import { ListItem, Button } from 'react-native-elements'
-
-import SelectProjectScreen from './SelectProjectScreen';
-import { createStackNavigator } from 'react-navigation';
-import store from '../js/store';
-import * as Action from '../js/actionTypes';
-
-// RO Inspections Screen
+import { ROInspectionScreenStyles as styles } from '../styles/index.js'
+import SelectProjectScreen from './SelectProjectScreen'
+import { createStackNavigator } from 'react-navigation'
+import store from '../js/store'
+import * as Action from '../js/actionTypes'
 
 const EditInspectionStack = createStackNavigator({
   selectProject: SelectProjectScreen
-});
+})
 
 class LogoTitle extends React.Component {
   render() {
@@ -29,14 +25,14 @@ class LogoTitle extends React.Component {
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Text>Inspections</Text>
       </View>
-    );
+    )
   }
 }
 
+// RO Inspections Screen
 class ROInspectionScreen extends React.Component {
-
   static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
+    const { params = {} } = navigation.state
     return {
       headerTitleStyle: {
         color: 'white'
@@ -51,27 +47,27 @@ class ROInspectionScreen extends React.Component {
           type="clear"
           onPress={() =>
             Alert.alert(
-              //title
+              // title
               'Warning',
-              //body
+              // body
               'Are you sure you want to remove this inspection?',
               [
                 { text: 'Yes', onPress: () => params.removeInspection(params.self) },
-                { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' },
+                { text: 'Cancel', onPress: () => console.log('No Pressed'), style: 'cancel' }
               ],
               { cancelable: false }
             )
           }
         />
-      ),
+      )
     }
   };
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleStoreStateChange = this.handleStoreStateChange.bind(this);
-    this.showElement = this.showElement.bind(this);
+    this.handleStoreStateChange = this.handleStoreStateChange.bind(this)
+    this.showElement = this.showElement.bind(this)
 
     this.state = {
       name: '',
@@ -84,32 +80,31 @@ class ROInspectionScreen extends React.Component {
   }
 
   goToElement(index) {
-    this.props.navigation.navigate('EditElementScreen', { index: index, readonly: true, ...this.state.params });
+    this.props.navigation.navigate('EditElementScreen', { index: index, readonly: true, ...this.state.params })
   }
 
   removeInspection(self) {
-
-    let inspections = [];
+    let inspections = []
     if (self.props.inspections && self.props.inspections.length > 0) {
-      inspections = [...self.props.inspections];
-      let idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId');
+      inspections = [...self.props.inspections]
+      const idx = self.getIndex(self.props.currentInspection.inspectionId, inspections, 'inspectionId')
 
       if (idx !== -1) {
-        inspections.splice([idx], 1);
+        inspections.splice([idx], 1)
       }
     }
-    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections });
-    const { navigate } = self.props.navigation;
-    navigate('Home');
+    store.dispatch({ type: Action.UPDATE_INSPECTIONS, inspections: inspections })
+    const { navigate } = self.props.navigation
+    navigate('Home')
   }
 
   getIndex(value, arr, prop) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i][prop] === value) {
-        return i;
+        return i
       }
     }
-    return -1; //to handle the case where the value doesn't exist
+    return -1 // to handle the case where the value doesn't exist
   }
 
   componentDidMount() {
@@ -117,7 +112,7 @@ class ROInspectionScreen extends React.Component {
     // console.log('Params:', this.state.params);
     // console.log("I:", this.props.inspections);
 
-    let idx = this.getIndex(this.state.params.inspectionId, this.props.inspections, 'inspectionId');
+    const idx = this.getIndex(this.state.params.inspectionId, this.props.inspections, 'inspectionId')
     if (idx === -1) {
       store.dispatch({
         type: Action.CURRENT_INSPECTION,
@@ -126,45 +121,45 @@ class ROInspectionScreen extends React.Component {
           elements: [],
           status: 'Pending'
         }
-      });
+      })
     } else {
-      store.dispatch({ type: Action.CURRENT_INSPECTION, currentInspection: this.props.inspections[idx] });
+      store.dispatch({ type: Action.CURRENT_INSPECTION, currentInspection: this.props.inspections[idx] })
     }
-    this.props.navigation.setParams({ removeInspection: this.removeInspection });
-    this.props.navigation.setParams({ self: this });
+    this.props.navigation.setParams({ removeInspection: this.removeInspection })
+    this.props.navigation.setParams({ self: this })
   }
 
   componentWillUnmount() {
     // // Remove the listener when you are done
-    this.state.unsub();
+    this.state.unsub()
   }
 
   handleStoreStateChange() {
     // console.log('handle store state change curr', this.props.currentInspection);
     // console.log('handle store state change insps', this.props.inspections);
-    let storingValue = JSON.stringify(store.getState())
-    AsyncStorage.setItem('completeStore', storingValue);
-    this.setState(this.props.currentInspection);
+    const storingValue = JSON.stringify(store.getState())
+    AsyncStorage.setItem('completeStore', storingValue)
+    this.setState(this.props.currentInspection)
   }
 
   showElement(item) {
     switch (item.type) {
-      case 'photo':
-        this.props.navigation.navigate('CameraScreen', { readonly: true, imageUri: item.uri, back: 'ROInspection' });
-        break;
-      case 'video':
-        this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ROInspection' });
-        break;
-      case 'voice':
-        this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ROInspection' });
-        break;
+    case 'photo':
+      this.props.navigation.navigate('CameraScreen', { readonly: true, imageUri: item.uri, back: 'ROInspection' })
+      break
+    case 'video':
+      this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
+      break
+    case 'voice':
+      this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, back: 'ROInspection' })
+      break
     }
   }
 
   render() {
-    if (this.props.currentInspection === undefined
-      || !this.props.currentInspection.elements) {
-      return null;
+    if (this.props.currentInspection === undefined ||
+      !this.props.currentInspection.elements) {
+      return null
     }
 
     return (
@@ -183,7 +178,7 @@ class ROInspectionScreen extends React.Component {
                   leftAvatar={{
                     title: '' + (element.items && element.items.length) || '0',
                     // source: { uri: element.avatar_url },
-                    showEditButton: true,
+                    showEditButton: true
                   }}
                   rightIcon={{ name: 'chevron-right', style: { color: 'white' } }}
                   title={element.title}
@@ -196,7 +191,7 @@ class ROInspectionScreen extends React.Component {
           </View>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -206,29 +201,7 @@ function mapStoreStateToProps(storeState) {
     projects: storeState.models.projects,
     currentInspection: storeState.models.currentInspection,
     inspections: storeState.models.inspections,
-    requestError: storeState.ui.requests.error,
-  };
-}
-export default connect(mapStoreStateToProps)(ROInspectionScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  dateContainer: {
-    padding: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  image: {
-    width: 85,
-    height: 85,
-    margin: 2,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    requestError: storeState.ui.requests.error
   }
-});
+}
+export default connect(mapStoreStateToProps)(ROInspectionScreen)
