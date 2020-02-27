@@ -331,7 +331,7 @@ class EditElementScreen extends React.Component {
                     title="GPS Stamp"
                     onPress={() => this.addGPS()}
                   />
-                  <Text style={{ fontWeight: 'bold', marginLeft: 20, marginRight: 20 }}>Add Description</Text>
+                  <Text style={{ fontWeight: 'bold', marginLeft: 15, marginRight: 15 }}>Add Description</Text>
                   <Button
                     style={{ marginBottom: 2 }}
                     title="Date Stamp"
