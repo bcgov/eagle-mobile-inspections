@@ -156,7 +156,6 @@
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F3FBB42245344990B2EB3ECB /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6A8E7EBC58489A9EB51C2C /* libRNImagePicker.a */; };
-		F7CCC47823F31FAA0006DCBE /* eagleMobileDEV.app in Resources */ = {isa = PBXBuildFile; fileRef = 4D60719F233ECF1C003CB6AA /* eagleMobileDEV.app */; };
 		FD4EE2F65BD042879E1DBC52 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAC942254BD0474EBD3A2143 /* Entypo.ttf */; };
 /* End PBXBuildFile section */
 
@@ -1833,7 +1832,6 @@
 				4D607197233ECF1C003CB6AA /* MaterialIcons.ttf in Resources */,
 				4D607198233ECF1C003CB6AA /* Octicons.ttf in Resources */,
 				4D607199233ECF1C003CB6AA /* SimpleLineIcons.ttf in Resources */,
-				F7CCC47823F31FAA0006DCBE /* eagleMobileDEV.app in Resources */,
 				4D60719A233ECF1C003CB6AA /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
