@@ -49,9 +49,14 @@ class CameraScreen extends React.Component {
       curr = []
     }
 
+    let coords = getCoordStamp(data);
     // Safety for lat/long
     if (data !== null) {
+<<<<<<< HEAD
       curr.push({ type: 'photo', uri: this.state.imageUri, geo: data.coords, caption: '', timestamp: new Date().toISOString() })
+=======
+      curr.push({ type: 'photo', uri: this.state.imageUri, geo: coords, caption: '', timestamp: new Date().toISOString() });
+>>>>>>> replace setting of lat & lons with utm coords for inspection elements
     } else {
       curr.push({ type: 'photo', uri: this.state.imageUri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() })
     }
