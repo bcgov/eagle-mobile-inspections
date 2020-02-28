@@ -16,6 +16,8 @@ import * as Action from '../js/actionTypes';
 import Video, { FilterType } from 'react-native-video';
 import { getCoordStamp } from '../utils/geo';
 import { videoScreenStyles as styles } from '../styles/index.js'
+import { DEFAULT_COORDS } from '../js/constants';
+
 // Add Inspections Screen
 const EditInspectionStack = createStackNavigator({
   selectProject: SelectProjectScreen
@@ -139,19 +141,15 @@ class VideoScreen extends React.Component {
       });
     });
 
-    console.log(data)
-    let coords = getCoordStamp(data);
-
-    // Safety for lat/long
     if (!curr) {
       curr = []
     }
-    console.log(coords)
-    // TODO remove this check, getCoordStamp returns [0.0, 0.0, 999, "ZZ"] if coords not transformed
-    if (coords !== null) {
+    // Safety for lat/long
+    if (data !== null) {
+      let coords = getCoordStamp(data.coords);
       curr.push({ type: 'video', uri: this.state.uri, geo: coords, caption: '', timestamp: new Date().toISOString() });
     } else {
-      curr.push({ type: 'video', uri: this.state.uri, geo: [0.0, 0.0, 999, "ZZ"], caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'video', uri: this.state.uri, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() });
     }
 
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })

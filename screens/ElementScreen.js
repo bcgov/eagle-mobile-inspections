@@ -22,6 +22,7 @@ import * as uuid from 'react-native-uuid'
 import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.js'
 import { elementOptions } from '../js/config'
 import { getCoordStamp } from '../utils/geo';
+import { DEFAULT_COORDS } from '../constants';
 
 
 // Add element screen
@@ -197,7 +198,13 @@ class ElementScreen extends React.Component {
     });
 
     let curr = this.state.description;
-    let coords = getCoordStamp(data.coords);
+    let coords;
+    if (data !== null) {
+      coords = getCoordStamp(data.coords);
+    } else {
+      coords = DEFAULT_COORDS;
+    }
+
     this.setState({
       description: curr + '\nEasting: ' +
         coords.Easting + ', Northing: ' +
@@ -278,15 +285,14 @@ class ElementScreen extends React.Component {
       // Unsupported type
       return
     }
+
     let geoCoords = { "latitude": response.latitude, "longitude": response.longitude };
-    console.log(JSON.stringify(geoCoords));
     let coords = getCoordStamp(geoCoords);
-    // Safety for lat/long
     curr.push(
       {
         type: type,
         uri: response.uri,
-        geo: [coords.Easting ? coords.Easting : 0, coords.Northing ? coords.Northing : 0, coords.ZoneNumber, coords.ZoneLetter],
+        geo: coords,
         caption: '',
         timestamp: response.timestamp ? response.timestamp : new Date().toISOString()
       }

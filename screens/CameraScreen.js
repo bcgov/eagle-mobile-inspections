@@ -10,14 +10,10 @@ import { Button, Icon } from 'react-native-elements'
 import { withNavigationFocus } from 'react-navigation'
 import { RNCamera } from 'react-native-camera'
 
-<<<<<<< HEAD
-import store from '../js/store'
-import * as Action from '../js/actionTypes'
-=======
 import store from '../js/store';
 import * as Action from '../js/actionTypes';
 import { getCoordStamp } from '../utils/geo';
->>>>>>> fix lib import and utm calls
+import { DEFAULT_COORDS } from '../js/constants';
 
 class CameraScreen extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -42,10 +38,10 @@ class CameraScreen extends React.Component {
   async saveImage() {
     // Save to this inspection's redux
     let curr = this.props.items
-    const data = await new Promise(function(r, j) {
-      navigator.geolocation.getCurrentPosition(function(loc) {
+    const data = await new Promise(function (r, j) {
+      navigator.geolocation.getCurrentPosition(function (loc) {
         r(loc)
-      }, function(err) {
+      }, function (err) {
         console.log('err:', err)
         r(null)
       })
@@ -55,16 +51,12 @@ class CameraScreen extends React.Component {
       curr = []
     }
 
-    let coords = getCoordStamp(data);
     // Safety for lat/long
     if (data !== null) {
-<<<<<<< HEAD
-      curr.push({ type: 'photo', uri: this.state.imageUri, geo: data.coords, caption: '', timestamp: new Date().toISOString() })
-=======
+      let coords = getCoordStamp(data.coords);
       curr.push({ type: 'photo', uri: this.state.imageUri, geo: coords, caption: '', timestamp: new Date().toISOString() });
->>>>>>> replace setting of lat & lons with utm coords for inspection elements
     } else {
-      curr.push({ type: 'photo', uri: this.state.imageUri, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() })
+      curr.push({ type: 'photo', uri: this.state.imageUri, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() });
     }
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
 
@@ -89,14 +81,14 @@ class CameraScreen extends React.Component {
     console.log('CameraScreen: componentWillUnmount')
   }
 
-  fetch = async() => {
+  fetch = async () => {
     console.log('fetching...')
     this.setState({ loading: true })
     // await getLocalInspections();
     this.setState({ loading: false })
   }
 
-  takePicture = async() => {
+  takePicture = async () => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true }
       const data = await this.camera.takePictureAsync(options)

@@ -18,9 +18,8 @@ export function getCoordStamp(geo) {
   }
 
   let utmWorker = new utmObj();
-  // lat, lon, precision=1m
+  // lat, lon, precision
   let utmCoords = utmWorker.convertLatLngToUtm(lat, lon, 2);
-  console.log(utmCoords)
   if (!utmCoords) {
     console.log("error converting coordinates to utm")
     return { "Easting": 0, "Northing": 0, "ZoneNumber": 999, "ZoneLetter": "ZZ" }

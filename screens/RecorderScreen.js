@@ -13,6 +13,8 @@ import store from '../js/store'
 import * as Action from '../js/actionTypes'
 const audioRecorderPlayer = new AudioRecorderPlayer()
 import { getCoordStamp } from '../utils/geo';
+import { DEFAULT_COORDS } from '../js/constants';
+// Recorder Screen
 
 const EditInspectionStack = createStackNavigator({
   selectProject: SelectProjectScreen
@@ -143,15 +145,15 @@ class RecorderScreen extends React.Component {
         r(null);
       });
     });
-    let coords = getCoordStamp(data);
     // Safety for lat/long
     if (!curr) {
       curr = []
     }
-    if (coords !== null) {
+    if (data !== null) {
+      let coords = getCoordStamp(data.coords);
       curr.push({ type: 'voice', uri: this.state.rec, geo: coords, caption: '', timestamp: new Date().toISOString() });
     } else {
-      curr.push({ type: 'voice', uri: this.state.rec, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() })
+      curr.push({ type: 'voice', uri: this.state.rec, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() });
     }
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
     this.props.navigation.navigate('AddCaptionScreen', { back: this.state.params.back })
