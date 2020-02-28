@@ -10,8 +10,14 @@ import { Button, Icon } from 'react-native-elements'
 import { withNavigationFocus } from 'react-navigation'
 import { RNCamera } from 'react-native-camera'
 
+<<<<<<< HEAD
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
+=======
+import store from '../js/store';
+import * as Action from '../js/actionTypes';
+import { getCoordStamp } from '../utils/geo';
+>>>>>>> fix lib import and utm calls
 
 class CameraScreen extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {

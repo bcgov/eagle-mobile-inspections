@@ -1,4 +1,4 @@
-import { utmObj } from 'utm-latlng';
+import utmObj from 'utm-latlng';
 
 export function getCoordStamp(geo) {
   // Saved images store their geo data as an array. Images coming from the camera
@@ -17,9 +17,10 @@ export function getCoordStamp(geo) {
     lon = 0.0;
   }
 
-  const utmWorker = new utmObj('WGS 84');
+  let utmWorker = new utmObj();
   // lat, lon, precision=1m
-  let utmCoords = utmWorker(lat, lon, 1);
+  let utmCoords = utmWorker.convertLatLngToUtm(lat, lon, 2);
+  console.log(utmCoords)
   if (!utmCoords) {
     console.log("error converting coordinates to utm")
     return { "Easting": 0, "Northing": 0, "ZoneNumber": 999, "ZoneLetter": "ZZ" }

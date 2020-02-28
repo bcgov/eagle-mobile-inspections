@@ -12,6 +12,7 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 const audioRecorderPlayer = new AudioRecorderPlayer()
+import { getCoordStamp } from '../utils/geo';
 
 const EditInspectionStack = createStackNavigator({
   selectProject: SelectProjectScreen

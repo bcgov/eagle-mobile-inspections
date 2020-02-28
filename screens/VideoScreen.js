@@ -132,7 +132,6 @@ class VideoScreen extends React.Component {
     let curr = this.props.items
     const data = await new Promise(function (r, j) {
       navigator.geolocation.getCurrentPosition(function (loc) {
-        // console.log("location:", loc);
         r(loc);
       }, function (err) {
         console.log("err:", err);
@@ -140,13 +139,14 @@ class VideoScreen extends React.Component {
       });
     });
 
+    console.log(data)
     let coords = getCoordStamp(data);
 
     // Safety for lat/long
     if (!curr) {
       curr = []
     }
-
+    console.log(coords)
     // TODO remove this check, getCoordStamp returns [0.0, 0.0, 999, "ZZ"] if coords not transformed
     if (coords !== null) {
       curr.push({ type: 'video', uri: this.state.uri, geo: coords, caption: '', timestamp: new Date().toISOString() });

@@ -197,7 +197,7 @@ class ElementScreen extends React.Component {
     });
 
     let curr = this.state.description;
-    let coords = getCoordStamp(data);
+    let coords = getCoordStamp(data.coords);
     this.setState({
       description: curr + '\nEasting: ' +
         coords.Easting + ', Northing: ' +
@@ -278,8 +278,9 @@ class ElementScreen extends React.Component {
       // Unsupported type
       return
     }
-    let geoCoords = { "latitude": response.latitude, "longitude": response.longitude }
-    let coords = getCoordStamp(geoCoords)
+    let geoCoords = { "latitude": response.latitude, "longitude": response.longitude };
+    console.log(JSON.stringify(geoCoords));
+    let coords = getCoordStamp(geoCoords);
     // Safety for lat/long
     curr.push(
       {
