@@ -21,7 +21,7 @@ import * as Action from '../js/actionTypes'
 import * as uuid from 'react-native-uuid'
 import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.js'
 import { elementOptions } from '../js/config'
-import { getCoordStamp } from '../utils/geo';
+import { buildGeoDescription, getCoordStamp } from '../utils/geo';
 import { DEFAULT_COORDS } from '../js/constants';
 
 
@@ -204,13 +204,9 @@ class ElementScreen extends React.Component {
     } else {
       coords = DEFAULT_COORDS;
     }
-
+    let geoStamp = buildGeoDescription(coords)
     this.setState({
-      description: curr + '\nEasting: ' +
-        coords.Easting + ', Northing: ' +
-        coords.Northing + ', UTM Zone: ' +
-        coords.ZoneNumber + coords.ZoneLetter +
-        '\n',
+      description: curr + geoStamp,
       elementChangedFlag: true
     });
   }

@@ -19,7 +19,7 @@ import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import { editElementScreenStyles as styles } from '../styles/index.js'
 import { elementOptions } from '../js/config'
-import { getCoordStamp } from '../utils/geo';
+import { getCoordStamp, buildGeoDescription } from '../utils/geo';
 
 
 // Edit Element Screen
@@ -196,12 +196,9 @@ class EditElementScreen extends React.Component {
     });
     let curr = this.state.addDescription;
     let coords = getCoordStamp(data);
+    let geoStamp = buildGeoDescription(coords)
     this.setState({
-      description: curr + '\nEasting: ' +
-        coords.Easting + ', Northing: ' +
-        coords.Northing + ', UTM Zone: ' +
-        coords.ZoneNumber + coords.ZoneLetter +
-        '\n',
+      description: curr + geoStamp,
       elementChangedFlag: true
     });
   }

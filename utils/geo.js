@@ -26,3 +26,12 @@ export function getCoordStamp(geo) {
   }
   return utmCoords;
 }
+
+export function buildGeoDescription(coords) {
+  let geoString = '\nEasting: ' +
+    coords.Easting + ', Northing: ' +
+    coords.Northing + ', UTM Zone: ' +
+    coords.ZoneNumber + coords.ZoneLetter +
+    '\n';
+  return geoString;
+}
