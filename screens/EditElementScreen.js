@@ -277,14 +277,13 @@ class EditElementScreen extends React.Component {
       return
     }
 
-    let geoCoords = { "latitude": response.latitude, "longitude": response.longitude }
-    let coords = getCoordStamp(geoCoords)
     // Safety for lat/long
+    let coords = getCoordStamp({ "latitude": response.latitude, "longitude": response.longitude });
     curr.push(
       {
         type: type,
         uri: response.uri,
-        geo: [coords.Easting ? coords.Easting : 0, coords.Northing ? coords.Northing : 0, coords.ZoneNumber, coords.ZoneLetter],
+        geo: coords,
         caption: '',
         timestamp: response.timestamp ? response.timestamp : new Date().toISOString()
       }

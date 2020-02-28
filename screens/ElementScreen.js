@@ -22,7 +22,7 @@ import * as uuid from 'react-native-uuid'
 import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.js'
 import { elementOptions } from '../js/config'
 import { getCoordStamp } from '../utils/geo';
-import { DEFAULT_COORDS } from '../constants';
+import { DEFAULT_COORDS } from '../js/constants';
 
 
 // Add element screen
@@ -286,8 +286,7 @@ class ElementScreen extends React.Component {
       return
     }
 
-    let geoCoords = { "latitude": response.latitude, "longitude": response.longitude };
-    let coords = getCoordStamp(geoCoords);
+    let coords = getCoordStamp({ "latitude": response.latitude, "longitude": response.longitude });
     curr.push(
       {
         type: type,
