@@ -46,7 +46,7 @@ class PreviewElementScreen extends React.Component {
   componentWillUnmount() {
   }
 
-  takePicture = async() => {
+  takePicture = async () => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true }
       const data = await this.camera.takePictureAsync(options)
@@ -78,7 +78,7 @@ class PreviewElementScreen extends React.Component {
       lon = geo.longitude
     }
 
-    const win = Dimensions.get('window')
+    const win = Dimensions.get('window');
 
     if (readonly) {
       imageUri = uri
@@ -107,11 +107,12 @@ class PreviewElementScreen extends React.Component {
             </ScrollView>
           </View>
           <View style={{ margin: 25 }}>
-            {!lat || !lon
+            {!coords
               ? <Text>No GPS data available</Text>
               : <Fragment>
-                <Text>Lat: {lat}</Text>
-                <Text>Lon: {lon}</Text>
+                <Text>Lat: {geo.Northing}</Text>
+                <Text>Lon: {geo.Easting}</Text>
+                <Text>Zone: {geo.ZoneNumber}+{geo.ZoneLetter}</Text>
               </Fragment>
             }
             <Text>Caption: {caption}</Text>

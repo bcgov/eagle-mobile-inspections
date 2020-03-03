@@ -1,2 +1,2 @@
-import { baseStyles } from './baseStyleSheets'
-export const videoScreenStyles = baseStyles
+import { videoScreenStyleSheet } from './baseStyleSheets'
+export const videoScreenStyles = videoScreenStyleSheet

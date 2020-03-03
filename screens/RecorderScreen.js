@@ -12,6 +12,9 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
 const audioRecorderPlayer = new AudioRecorderPlayer()
+import { getCoordStamp } from '../utils/geo';
+import { DEFAULT_COORDS } from '../js/constants';
+// Recorder Screen
 
 const EditInspectionStack = createStackNavigator({
   selectProject: SelectProjectScreen
@@ -78,7 +81,7 @@ class RecorderScreen extends React.Component {
   componentWillUnmount() {
   }
 
-  onStartRecord = async() => {
+  onStartRecord = async () => {
     const result = await audioRecorderPlayer.startRecorder()
     audioRecorderPlayer.addRecordBackListener((e) => {
       this.setState({
@@ -89,7 +92,7 @@ class RecorderScreen extends React.Component {
     })
   }
 
-  onStopRecord = async() => {
+  onStopRecord = async () => {
     const recording = await audioRecorderPlayer.stopRecorder()
     audioRecorderPlayer.removeRecordBackListener()
     this.setState({
@@ -99,7 +102,7 @@ class RecorderScreen extends React.Component {
     })
   }
 
-  onStartPlay = async() => {
+  onStartPlay = async () => {
     const msg = await audioRecorderPlayer.startPlayer()
     audioRecorderPlayer.addPlayBackListener((e) => {
       const stateObj = {
@@ -117,14 +120,14 @@ class RecorderScreen extends React.Component {
     })
   }
 
-  onPausePlay = async() => {
+  onPausePlay = async () => {
     const msg = await audioRecorderPlayer.pausePlayer()
     this.setState({
       playState: 'paused'
     })
   }
 
-  onStopPlay = async() => {
+  onStopPlay = async () => {
     audioRecorderPlayer.stopPlayer()
     audioRecorderPlayer.removePlayBackListener()
     this.setState({
@@ -132,24 +135,25 @@ class RecorderScreen extends React.Component {
     })
   }
 
-  saveRecording = async() => {
-    let curr = this.props.items
-    const coords = await new Promise(function(r, j) {
-      navigator.geolocation.getCurrentPosition(function(loc) {
-        r(loc)
-      }, function(err) {
-        console.log('err:', err)
-        r(null)
-      })
-    })
+  saveRecording = async () => {
+    let curr = this.props.items;
+    let data = await new Promise(function (r, j) {
+      navigator.geolocation.getCurrentPosition(function (loc) {
+        r(loc);
+      }, function (err) {
+        console.log("err:", err);
+        r(null);
+      });
+    });
     // Safety for lat/long
     if (!curr) {
       curr = []
     }
-    if (coords !== null) {
-      curr.push({ type: 'voice', uri: this.state.rec, geo: coords.coords, caption: '', timestamp: new Date().toISOString() })
+    if (data !== null) {
+      let coords = getCoordStamp(data.coords);
+      curr.push({ type: 'voice', uri: this.state.rec, geo: coords, caption: '', timestamp: new Date().toISOString() });
     } else {
-      curr.push({ type: 'voice', uri: this.state.rec, geo: [0.0, 0.0], caption: '', timestamp: new Date().toISOString() })
+      curr.push({ type: 'voice', uri: this.state.rec, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() });
     }
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
     this.props.navigation.navigate('AddCaptionScreen', { back: this.state.params.back })

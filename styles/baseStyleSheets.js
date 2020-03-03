@@ -165,7 +165,7 @@ export const settingsStyles = StyleSheet.create({
     marginHorizontal: 20
   }
 })
-export const videoScreenStyles = StyleSheet.create({
+export const videoScreenStyleSheet = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
