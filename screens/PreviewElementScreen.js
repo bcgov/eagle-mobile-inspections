@@ -46,7 +46,7 @@ class PreviewElementScreen extends React.Component {
   componentWillUnmount() {
   }
 
-  takePicture = async () => {
+  takePicture = async() => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true }
       const data = await this.camera.takePictureAsync(options)
@@ -78,7 +78,7 @@ class PreviewElementScreen extends React.Component {
       lon = geo.longitude
     }
 
-    const win = Dimensions.get('window');
+    const win = Dimensions.get('window')
 
     if (readonly) {
       imageUri = uri

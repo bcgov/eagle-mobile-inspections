@@ -1,2 +1,2 @@
 import { settingsStyles } from './baseStyleSheets'
-export const settingsScreenStyles = settingsStyles;
+export const settingsScreenStyles = settingsStyles
