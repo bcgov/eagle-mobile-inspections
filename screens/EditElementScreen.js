@@ -19,8 +19,7 @@ import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import { editElementScreenStyles as styles } from '../styles/index.js'
 import { elementOptions } from '../js/config'
-import { getCoordStamp, buildGeoDescription } from '../utils/geo';
-
+import { getCoordStamp, buildGeoDescription } from '../utils/geo'
 
 // Edit Element Screen
 class EditElementScreen extends React.Component {
@@ -185,22 +184,22 @@ class EditElementScreen extends React.Component {
 
   async addGPS() {
     // Add GPS to text area
-    let data = await new Promise(async function (r, j) {
-      navigator.geolocation.getCurrentPosition(async function (loc) {
-        console.log("LOC:", loc);
-        r(loc);
-      }, async function (err) {
-        console.log("err:", err);
-        r(null);
-      });
-    });
-    let curr = this.state.addDescription;
-    let coords = getCoordStamp(data);
-    let geoStamp = buildGeoDescription(coords)
+    const data = await new Promise(async function(r, j) {
+      navigator.geolocation.getCurrentPosition(async function(loc) {
+        console.log('LOC:', loc)
+        r(loc)
+      }, async function(err) {
+        console.log('err:', err)
+        r(null)
+      })
+    })
+    const curr = this.state.addDescription
+    const coords = getCoordStamp(data)
+    const geoStamp = buildGeoDescription(coords)
     this.setState({
       description: curr + geoStamp,
       elementChangedFlag: true
-    });
+    })
   }
 
   async addDateStamp() {
@@ -213,20 +212,20 @@ class EditElementScreen extends React.Component {
 
   showElement(item) {
     switch (item.type) {
-      case 'photo':
-        this.props.navigation.navigate('PreviewElementScreen', { readonly: true, imageUri: item.uri, item: item, back: 'EditElementScreen' })
-        break
-      case 'video':
-        this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'EditElementScreen' })
-        break
-      case 'voice':
-        this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, item: item, back: 'EditElementScreen' })
-        break
+    case 'photo':
+      this.props.navigation.navigate('PreviewElementScreen', { readonly: true, imageUri: item.uri, item: item, back: 'EditElementScreen' })
+      break
+    case 'video':
+      this.props.navigation.navigate('VideoScreen', { readonly: true, uri: item.uri, back: 'EditElementScreen' })
+      break
+    case 'voice':
+      this.props.navigation.navigate('RecorderScreen', { readonly: true, uri: item.uri, item: item, back: 'EditElementScreen' })
+      break
     }
   }
 
   async openTheodolite() {
-    const url = 'theodolite://';
+    const url = 'theodolite://'
     return Linking.openURL(url).then(() => { }).catch((e) => {
       // console.log("Couldn't open theodolite", e);
       setTimeout(() => {
@@ -275,7 +274,7 @@ class EditElementScreen extends React.Component {
     }
 
     // Safety for lat/long
-    let coords = getCoordStamp({ "latitude": response.latitude, "longitude": response.longitude });
+    const coords = getCoordStamp({ latitude: response.latitude, longitude: response.longitude })
     curr.push(
       {
         type: type,
@@ -340,7 +339,7 @@ class EditElementScreen extends React.Component {
                     title="GPS Stamp"
                     onPress={() => this.addGPS()}
                   />
-                  <Text style={{ fontWeight: 'bold', marginLeft: 15, marginRight: 15 }}>Add Description</Text>
+                  <Text style={{ fontWeight: 'bold', marginLeft: 10, marginRight: 10 }}>Add Description</Text>
                   <Button
                     style={{ marginBottom: 2 }}
                     title="Date Stamp"
@@ -430,22 +429,22 @@ class EditElementScreen extends React.Component {
           options={elementOptions}
           onSubmit={(option) => {
             switch (option) {
-              case 'Theodolite':
-                this.openTheodolite()
-                break
-              case 'Photo':
-                this.props.navigation.navigate('CameraScreen', { ...this.state.params, back: 'EditElementScreen' })
-                break
-              case 'Video':
-                this.props.navigation.navigate('VideoScreen', { ...this.state.params, back: 'EditElementScreen' })
-                break
-              case 'Voice':
-                this.props.navigation.navigate('RecorderScreen', { ...this.state.params, back: 'EditElementScreen' })
-                break
-              case 'Choose from library':
-                this.getMediaFromLibrary()
-                break
-              default:
+            case 'Theodolite':
+              this.openTheodolite()
+              break
+            case 'Photo':
+              this.props.navigation.navigate('CameraScreen', { ...this.state.params, back: 'EditElementScreen' })
+              break
+            case 'Video':
+              this.props.navigation.navigate('VideoScreen', { ...this.state.params, back: 'EditElementScreen' })
+              break
+            case 'Voice':
+              this.props.navigation.navigate('RecorderScreen', { ...this.state.params, back: 'EditElementScreen' })
+              break
+            case 'Choose from library':
+              this.getMediaFromLibrary()
+              break
+            default:
               // Fall through
             }
             this.setState({ elementChangedFlag: true })
