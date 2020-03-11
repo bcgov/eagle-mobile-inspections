@@ -12,6 +12,7 @@ import Moment from 'moment'
 import ImagePicker from 'react-native-image-picker'
 import { renderTouchables } from '../js/components'
 import { Input, Button } from 'react-native-elements'
+import Geolocation from '@react-native-community/geolocation'
 
 import { HeaderBackButton } from 'react-navigation'
 import SimplePicker from 'react-native-simple-picker'
@@ -184,13 +185,13 @@ class EditElementScreen extends React.Component {
 
   async addGPS() {
     // Add GPS to text area
-    const data = await new Promise(async function(r, j) {
-      navigator.geolocation.getCurrentPosition(async function(loc) {
+    const data = await new Promise(async function(resolve, reject) {
+      Geolocation.getCurrentPosition(async function(loc) {
         console.log('LOC:', loc)
-        r(loc)
+        resolve(loc)
       }, async function(err) {
         console.log('err:', err)
-        r(null)
+        resolve(null)
       })
     })
     const curr = this.state.addDescription

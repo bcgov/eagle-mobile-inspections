@@ -114,7 +114,7 @@ export async function uploadInspection(currentUser, inspection) {
 
 async function uploadElements(currentUser, projId, inspId, elements) {
   console.log('Uploading elements', elements)
-  return await Promise.all(elements.map(async element => {
+  return Promise.all(elements.map(async element => {
     // Upload each asset
 
     const elObj = await createElement(currentUser, projId, inspId, element)
@@ -153,17 +153,19 @@ async function createElement(currentUser, projId, inspId, element) {
   // console.log('json:', response);
   if (response.status !== 200) {
     console.log('Server error:', response.status)
+    // eslint-disable-next-line no-throw-literal
     throw 'Response is null'
   }
   const resObj = await response.json()
 
   // iterate through the items if there are any
-  return await Promise.all(element.items.map(async item => {
+  return Promise.all(element.items.map(async item => {
     const res = await uploadItem(currentUser, projId, resObj._id, inspId, item)
 
     if (res === null) {
       // Error
       console.log('error uploading item.')
+      // eslint-disable-next-line no-throw-literal
       throw 'Response is null'
     } else {
       console.log('Res:', res)
@@ -220,6 +222,7 @@ async function uploadItem(currentUser, projId, elementId, inspId, item) {
   if (response.status === 200) {
     return item
   } else {
+    // eslint-disable-next-line no-throw-literal
     throw 'Error in Response'
   }
 }

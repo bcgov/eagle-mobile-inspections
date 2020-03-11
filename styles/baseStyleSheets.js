@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 
 // Styles for our views
 export const viewFlexColumn = {
@@ -74,7 +74,7 @@ export const recorderStyles = StyleSheet.create({
 export const customProjectStyles = StyleSheet.create({
   customProjectStyle: {
     flexDirection: 'row',
-    width: window.width,
+    width: Dimensions.get('window').width,
     margin: 10,
     padding: 4,
     alignItems: 'center',
@@ -336,7 +336,7 @@ export const projectScreenStyles = StyleSheet.create({
   },
   customProjectStyle: {
     flexDirection: 'row',
-    width: window.width,
+    width: Dimensions.get('window').width,
     margin: 10,
     padding: 4,
     alignItems: 'center',

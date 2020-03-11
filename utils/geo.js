@@ -1,4 +1,4 @@
-import utmObj from 'utm-latlng'
+import UtmObj from 'utm-latlng'
 
 export function getCoordStamp(geo) {
   // Saved images store their geo data as an array. Images coming from the camera
@@ -16,7 +16,7 @@ export function getCoordStamp(geo) {
     lon = 0.0
   }
 
-  const utmWorker = new utmObj()
+  const utmWorker = new UtmObj()
   // lat, lon, precision
   const utmCoords = utmWorker.convertLatLngToUtm(lat, lon, 0)
   if (!utmCoords) {

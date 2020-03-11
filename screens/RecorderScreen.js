@@ -13,6 +13,7 @@ import store from '../js/store'
 import * as Action from '../js/actionTypes'
 import { getCoordStamp } from '../utils/geo'
 import { DEFAULT_COORDS } from '../js/constants'
+import Geolocation from '@react-native-community/geolocation'
 const audioRecorderPlayer = new AudioRecorderPlayer()
 // Recorder Screen
 
@@ -137,12 +138,12 @@ class RecorderScreen extends React.Component {
 
   saveRecording = async() => {
     let curr = this.props.items
-    const data = await new Promise(function(r, j) {
-      navigator.geolocation.getCurrentPosition(function(loc) {
-        r(loc)
+    const data = await new Promise(function(resolve, reject) {
+      Geolocation.getCurrentPosition(function(loc) {
+        resolve(loc)
       }, function(err) {
         console.log('err:', err)
-        r(null)
+        resolve(null)
       })
     })
     // Safety for lat/long
@@ -184,7 +185,7 @@ class RecorderScreen extends React.Component {
         }
         <View style={styles.messageContainer}>
           {
-            this.state.playState == 'recording' &&
+            this.state.playState === 'recording' &&
             <Text style={styles.message}>Recording</Text>
           }
           {
@@ -227,7 +228,7 @@ class RecorderScreen extends React.Component {
           }
           <View>
             {
-              (rec === '' || this.state.playState == 'recording') &&
+              (rec === '' || this.state.playState === 'recording') &&
               <Icon
                 raised
                 disabled

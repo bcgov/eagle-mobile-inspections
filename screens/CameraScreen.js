@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Geolocation from '@react-native-community/geolocation'
 import {
   ImageBackground,
   View,
@@ -38,12 +39,12 @@ class CameraScreen extends React.Component {
   async saveImage() {
     // Save to this inspection's redux
     let curr = this.props.items
-    const data = await new Promise(function(r, j) {
-      navigator.geolocation.getCurrentPosition(function(loc) {
-        r(loc)
+    const data = await new Promise(function(resolve, reject) {
+      Geolocation.geolocation.getCurrentPosition(function(loc) {
+        resolve(loc)
       }, function(err) {
         console.log('err:', err)
-        r(null)
+        resolve(null)
       })
     })
 

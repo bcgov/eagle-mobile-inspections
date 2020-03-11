@@ -49,7 +49,7 @@ class AuthWrapper extends React.Component {
   async _handleOpenURL(event) {
     // console.log("event:", event);
     try {
-      const { state, code } = querystring.parse(querystring.extract(event.url))
+      const { code } = querystring.parse(querystring.extract(event.url))
 
       // Now exchange code for token.
       this.getNewToken(code)

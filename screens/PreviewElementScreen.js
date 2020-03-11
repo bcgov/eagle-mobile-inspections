@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import { Image } from 'react-native-elements'
 import { previewElementScreenStyles as styles } from '../styles/index.js'
+import { getCoordStamp } from '../utils/geo.js'
 
 class PreviewElementScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -67,17 +68,8 @@ class PreviewElementScreen extends React.Component {
     const uri = this.props.navigation.getParam('imageUri', null)
 
     // Saved images store their geo data as an array. Images coming from the camera
-    // store their geo data as an object.
-    let lat
-    let lon
-    if (Array.isArray(geo)) {
-      lat = geo[0]
-      lon = geo[1]
-    } else if (typeof geo === 'object' && geo !== null) {
-      lat = geo.latitude
-      lon = geo.longitude
-    }
-
+    // Generate the coords here
+    const coords = getCoordStamp(geo)
     const win = Dimensions.get('window')
 
     if (readonly) {

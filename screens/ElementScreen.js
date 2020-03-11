@@ -23,6 +23,7 @@ import { elementScreenStyles as styles, viewFlexColumn } from '../styles/index.j
 import { elementOptions } from '../js/config'
 import { buildGeoDescription, getCoordStamp } from '../utils/geo'
 import { DEFAULT_COORDS } from '../js/constants'
+import Geolocation from '@react-native-community/geolocation'
 
 // Add element screen
 class ElementScreen extends React.Component {
@@ -187,12 +188,12 @@ class ElementScreen extends React.Component {
 
   async addGPS() {
     // Add GPS to text area
-    const data = await new Promise(async function(r, j) {
-      navigator.geolocation.getCurrentPosition(async function(loc) {
-        r(loc)
+    const data = await new Promise(async function(resolve, reject) {
+      Geolocation.getCurrentPosition(async function(loc) {
+        resolve(loc)
       }, async function(err) {
         console.log('err:', err)
-        r(null)
+        resolve(null)
       })
     })
 

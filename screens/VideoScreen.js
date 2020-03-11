@@ -17,6 +17,7 @@ import Video, { FilterType } from 'react-native-video'
 import { getCoordStamp } from '../utils/geo'
 import { videoScreenStyles as styles } from '../styles/index.js'
 import { DEFAULT_COORDS } from '../js/constants'
+import Geolocation from '@react-native-community/geolocation'
 
 // Add Inspections Screen
 const EditInspectionStack = createStackNavigator({
@@ -132,12 +133,12 @@ class VideoScreen extends React.Component {
   async saveVideo() {
     // Save to this inspection's redux
     let curr = this.props.items
-    const data = await new Promise(function(r, j) {
-      navigator.geolocation.getCurrentPosition(function(loc) {
-        r(loc)
+    const data = await new Promise(function(resolve, reject) {
+      Geolocation.getCurrentPosition(function(loc) {
+        resolve(loc)
       }, function(err) {
         console.log('err:', err)
-        r(null)
+        resolve(null)
       })
     })
 
