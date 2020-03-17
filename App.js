@@ -38,17 +38,6 @@ class App extends React.Component {
     )
   }
 
-  // _loadResourcesAsync = async() => {
-  //   return Promise.all([
-  //     Asset.loadAsync([
-  //       require('./assets/images/bcgov-header-vert-MD.png')
-  //     ]),
-  //     Font.loadAsync({
-  //       ...Icon.FontAwesome.font
-  //     })
-  //   ])
-  // };
-
   _handleLoadingError = error => {
     console.warn(error)
   };
