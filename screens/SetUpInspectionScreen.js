@@ -16,6 +16,7 @@ import store from '../js/store'
 import { uploadInspection } from '../api/eagleAPI'
 import * as Action from '../js/actionTypes'
 import { setupInspectionScreenStyles as styles } from '../styles/index.js'
+import Geolocation from '@react-native-community/geolocation'
 
 class SetUpInspectionScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -104,15 +105,17 @@ class SetUpInspectionScreen extends React.Component {
     console.log('componentDidMount')
 
     // Ask
-    navigator.geolocation.requestAuthorization()
+    Geolocation.requestAuthorization()
 
     this.props.navigation.setParams({ promptBeforeNavigating: this.promptBeforeNavigating })
     this.props.navigation.setParams({ saveInspection: this.saveInspection })
     this.props.navigation.setParams({ disableSave: true })
     this.props.navigation.setParams({ self: this })
 
-    this.state.focusListener = this.props.navigation.addListener('didFocus', () => {
-      this.validateForm()
+    this.setState({
+      focusListener: this.props.navigation.addListener('didFocus', () => {
+        this.validateForm()
+      })
     })
   }
 

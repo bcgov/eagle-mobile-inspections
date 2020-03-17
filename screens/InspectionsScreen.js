@@ -3,6 +3,7 @@ import { ScrollView, View, ImageBackground, Button, ActivityIndicator } from 're
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { getLocalInspections } from '../js/api'
+import Geolocation from '@react-native-community/geolocation'
 import * as uuid from 'react-native-uuid'
 import store from '../js/store'
 import * as Action from '../js/actionTypes'
@@ -106,7 +107,7 @@ class InspectionsScreen extends React.Component {
 
   componentDidMount() {
     // Ask
-    navigator.geolocation.requestAuthorization()
+    Geolocation.requestAuthorization()
 
     this.props.navigation.setParams({ addNewInspection: this.addNewInspection })
     // this.props.navigation.setParams({ submitAll: this.submitAll });

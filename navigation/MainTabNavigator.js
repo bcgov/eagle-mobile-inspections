@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform } from "react-native"
+import { Platform } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 // Isn't used but will keep in this file
@@ -39,16 +39,11 @@ HomeStack.navigationOptions = {
     inactiveBackgroundColor: '#003366'
   },
   tabBarLabel: 'Submitted',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? 'home'
-          : 'home'
-      }
-    />
-  )
+  tabBarIcon: ({ focused }) => {
+    return (<TabBarIcon focused={focused} name={Platform.OS === 'ios'
+      ? 'home'
+      : 'home'} />)
+  }
 }
 
 // Pending Inspections
@@ -75,12 +70,9 @@ InspectionsStack.navigationOptions = {
     inactiveBackgroundColor: '#003366'
   },
   tabBarLabel: 'Pending',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'book' : 'book'}
-    />
-  )
+  tabBarIcon: ({ focused }) => {
+    return (<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'book' : 'book'} />)
+  }
 }
 
 const SettingsStack = createStackNavigator({
@@ -95,12 +87,9 @@ SettingsStack.navigationOptions = {
     inactiveBackgroundColor: '#003366'
   },
   tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'settings' : 'settings'}
-    />
-  )
+  tabBarIcon: ({ focused }) => {
+    return (<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'settings' : 'settings'} />)
+  }
 }
 
 const nav = createBottomTabNavigator({
@@ -110,15 +99,7 @@ const nav = createBottomTabNavigator({
 })
 
 class MainApp extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   async componentDidMount() {
-  }
-
-  render() {
-
   }
 }
 

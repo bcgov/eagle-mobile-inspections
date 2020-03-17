@@ -11,12 +11,13 @@ import { withNavigationFocus, createStackNavigator } from 'react-navigation'
 import SelectProjectScreen from './SelectProjectScreen'
 
 import { RNCamera } from 'react-native-camera'
-import store from '../js/store';
-import * as Action from '../js/actionTypes';
-import Video, { FilterType } from 'react-native-video';
-import { getCoordStamp } from '../utils/geo';
+import store from '../js/store'
+import * as Action from '../js/actionTypes'
+import Video, { FilterType } from 'react-native-video'
+import { getCoordStamp } from '../utils/geo'
 import { videoScreenStyles as styles } from '../styles/index.js'
-import { DEFAULT_COORDS } from '../js/constants';
+import { DEFAULT_COORDS } from '../js/constants'
+import Geolocation from '@react-native-community/geolocation'
 
 // Add Inspections Screen
 const EditInspectionStack = createStackNavigator({
@@ -132,24 +133,24 @@ class VideoScreen extends React.Component {
   async saveVideo() {
     // Save to this inspection's redux
     let curr = this.props.items
-    const data = await new Promise(function (r, j) {
-      navigator.geolocation.getCurrentPosition(function (loc) {
-        r(loc);
-      }, function (err) {
-        console.log("err:", err);
-        r(null);
-      });
-    });
+    const data = await new Promise(function(resolve, reject) {
+      Geolocation.getCurrentPosition(function(loc) {
+        resolve(loc)
+      }, function(err) {
+        console.log('err:', err)
+        resolve(null)
+      })
+    })
 
     if (!curr) {
       curr = []
     }
     // Safety for lat/long
     if (data !== null) {
-      let coords = getCoordStamp(data.coords);
-      curr.push({ type: 'video', uri: this.state.uri, geo: coords, caption: '', timestamp: new Date().toISOString() });
+      const coords = getCoordStamp(data.coords)
+      curr.push({ type: 'video', uri: this.state.uri, geo: coords, caption: '', timestamp: new Date().toISOString() })
     } else {
-      curr.push({ type: 'video', uri: this.state.uri, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() });
+      curr.push({ type: 'video', uri: this.state.uri, geo: DEFAULT_COORDS, caption: '', timestamp: new Date().toISOString() })
     }
 
     store.dispatch({ type: Action.UPDATE_ITEMS, items: curr })
@@ -174,11 +175,11 @@ class VideoScreen extends React.Component {
     console.log('componentWillUnmount')
   }
 
-  launchVideo = async () => {
+  launchVideo = async() => {
     this.player.presentFullscreenPlayer()
   }
 
-  takeVideo = async () => {
+  takeVideo = async() => {
     if (this.camera) {
       if (this.state.isRecording) {
         console.log('stop recording')

@@ -5,12 +5,16 @@
   "postinstall": "npx jetify",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint . --ext .js"
   },
   "author": "Mark Lisé",
   "contributors": [
     "Mark Lisé <mark@digitalspace.ca>",
     "Daniel Truong <daniel@digitalspace.ca>"
+  ],
+  "pre-push": [
+    "lint"
   ],
   "dependencies": {
     "@react-native-community/async-storage": "^1.4.2",
@@ -46,6 +50,7 @@
     "utm-latlng": "^1.0.6"
   },
   "devDependencies": {
+    "pre-push": "^0.1.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "24.4.0",

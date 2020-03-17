@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 
 // Styles for our views
 export const viewFlexColumn = {
@@ -74,7 +74,7 @@ export const recorderStyles = StyleSheet.create({
 export const customProjectStyles = StyleSheet.create({
   customProjectStyle: {
     flexDirection: 'row',
-    width: window.width,
+    width: Dimensions.get('window').width,
     margin: 10,
     padding: 4,
     alignItems: 'center',
@@ -222,13 +222,6 @@ export const videoScreenStyleSheet = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center'
   },
-  bottomButtons: {
-    flex: 0.1,
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end'
-  },
   testContainer: {
     position: 'absolute',
     top: 0,
@@ -310,7 +303,7 @@ export const inspectionStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   dateContainer: {
     padding: 10,
@@ -324,7 +317,7 @@ export const inspectionStyles = StyleSheet.create({
     margin: 2,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: '#d6d7da'
   },
   footer: {
     marginBottom: 10,
@@ -332,33 +325,33 @@ export const inspectionStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-end',
-    alignContent: 'center',
+    alignContent: 'center'
   }
-});
+})
 export const projectScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   customProjectStyle: {
     flexDirection: 'row',
-    width: window.width,
+    width: Dimensions.get('window').width,
     margin: 10,
     padding: 4,
     alignItems: 'center',
     justifyContent: 'space-between',
     borderWidth: 2,
     borderColor: '#888',
-    borderRadius: 5,
+    borderRadius: 5
   }
-});
+})
 // This is used as the base style for most screens on the app
 export const baseStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   dateContainer: {
     padding: 10,
@@ -372,6 +365,6 @@ export const baseStyles = StyleSheet.create({
     margin: 2,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    borderColor: '#d6d7da'
   }
-});
+})

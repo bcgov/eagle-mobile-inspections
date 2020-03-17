@@ -1,6 +1,6 @@
-import React from 'react';
-import IconSet from 'react-native-vector-icons/MaterialCommunityIcons';
-import Colors from '../constants/Colors';
+import React from 'react'
+import IconSet from 'react-native-vector-icons/MaterialCommunityIcons'
+import Colors from '../constants/Colors'
 
 export default class TabBarIcon extends React.Component {
   render() {
@@ -11,6 +11,6 @@ export default class TabBarIcon extends React.Component {
         style={{ marginBottom: -3 }}
         color={this.props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
-    );
+    )
   }
 }

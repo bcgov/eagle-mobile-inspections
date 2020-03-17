@@ -21,12 +21,12 @@ export const AUTH_REQUIRE_NEW_PASSWORD = 'requireNewPassword'
 export const AUTH_TOTP_SETUP = 'TOTPSetup'
 
 // API
-export const API_ADMIN = 'AdministratorAPI';
+export const API_ADMIN = 'AdministratorAPI'
 
-export const GST = 0.05;
-export const PST = 0.07;
+export const GST = 0.05
+export const PST = 0.07
 
-export const DEFAULT_COORDS = { "Easting": 0, "Northing": 0, "ZoneNumber": 999, "ZoneLetter": "ZZ" };
+export const DEFAULT_COORDS = { Easting: 0, Northing: 0, ZoneNumber: 999, ZoneLetter: 'ZZ' }
 export const staticProjects = [{
   searchResults:
     [

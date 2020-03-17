@@ -9,7 +9,7 @@ import {
   Alert
 } from 'react-native'
 import Moment from 'moment'
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 
 import { ListItem, Button, Icon } from 'react-native-elements'
 
@@ -148,7 +148,7 @@ class InspectionDetailsScreen extends React.Component {
       )
     } else {
       // Check if the token is expired.
-      const exp = jwt_decode(self.props.currentUser.jwtToken).exp
+      const exp = jwtDecode(self.props.currentUser.jwtToken).exp
       if (Date.now() >= exp * 1000) {
         Alert.alert(
           // title
