@@ -246,8 +246,8 @@ class EditElementScreen extends React.Component {
 
   async getMediaFromLibrary() {
     const options = {
-      noData: true
-      // mediaType: 'mixed'
+      noData: true,
+      mediaType: 'mixed'
     }
     setTimeout(() => {
       ImagePicker.launchImageLibrary(options, (response) => {
@@ -265,9 +265,10 @@ class EditElementScreen extends React.Component {
     }
 
     var type = ''
-    if (response.type.includes('image')) {
+    if (response.type && response.type.includes('image')) {
       type = 'photo'
-    } else if (response.type.includes('video')) {
+      // Videos do not include a type. Look for a file extension to confirm it is a video.
+    } else if (response.fileName && response.fileName.includes('MOV')) {
       type = 'video'
     } else {
       // Unsupported type
