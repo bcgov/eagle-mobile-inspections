@@ -178,8 +178,6 @@ class RecorderScreen extends React.Component {
       >
         {readonly &&
           <View style={{ margin: 25 }}>
-            <Text>Lon: {this.state.params.item.geo.longitude}</Text>
-            <Text>Lat: {this.state.params.item.geo.latitude}</Text>
             <Text>Caption: {this.state.params.item.caption}</Text>
           </View>
         }

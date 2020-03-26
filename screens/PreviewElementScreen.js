@@ -102,8 +102,8 @@ class PreviewElementScreen extends React.Component {
             {!coords
               ? <Text>No GPS data available</Text>
               : <Fragment>
-                <Text>Lat: {geo.Northing}</Text>
-                <Text>Lon: {geo.Easting}</Text>
+                <Text>Northing: {geo.Northing}</Text>
+                <Text>Easting: {geo.Easting}</Text>
                 <Text>Zone: {geo.ZoneNumber}+{geo.ZoneLetter}</Text>
               </Fragment>
             }
