@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>View Camera Roll</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -53,11 +51,13 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This application would like to use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This application would like to use your microphone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This application would like to access your camera roll</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>View Camera Roll</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
