@@ -336,7 +336,7 @@ export const projectScreenStyles = StyleSheet.create({
   },
   customProjectStyle: {
     flexDirection: 'row',
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width - 40, // Must subtract the padding and margin to center.
     margin: 10,
     padding: 4,
     alignItems: 'center',
