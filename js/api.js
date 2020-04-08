@@ -3,7 +3,7 @@ import { Auth, API } from 'aws-amplify'
 import * as Action from './actionTypes'
 import store from './store'
 
-import AsyncStorage from '@react-native-community/async-storage'
+import { AsyncStorage } from 'react-native'
 
 var apiRequestCount = 0
 
